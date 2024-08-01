@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #333333;
+    box-sizing: border-box;
+}
+
+:root{
+    --base-color: #119c4c;
+}
+
+.primary-button{
+    background-color: var(--base-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
