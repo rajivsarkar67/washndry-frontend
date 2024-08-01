@@ -1,18 +1,67 @@
-table{
-    margin: 1rem 1rem 0 1rem;
-}
-table tr{
-    height: 5rem;
-}
-
-table tr td label{
-    margin-right: 2rem;
-    font-size: x-large;
+.address-page-container{
+    background-color: #f8f8f8;
+    padding-bottom: 2rem;
+    border-radius: 2rem;
+    width: 60%;
+    margin: 1rem auto;
 }
 
-table tr td input{
-    border: 1px solid black;
-    width: 30rem;
-    height: 3rem;
-    font-size: 1.3rem;
+.address-page-container .address-form{
+    padding: 2rem;
+}
+
+.address-page-container .address-form .form-field{
+    margin: 1rem 0;
+}
+
+.address-page-container .address-form .form-field label{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.address-page-container .address-form .form-field input{
+    border: 1px solid #777;
+    width: 100%;
+    height: 2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    padding-left: 1.3rem;
+}
+
+.address-page-container .address-form .form-field input::placeholder{
+    color: #999;
+}
+
+.address-page-container .order-section{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    margin: 0 2rem;
+    border-radius: 2rem;
+    background-color: white;
+}
+
+.address-page-container .order-section .total-amount-container{
+    font-weight: bold;
+}
+
+.address-page-container .order-section .total-amount-container .total-amount-label{
+    color: #777;
+}
+
+@media screen and (max-width: 850px) {
+    .address-page-container{
+        width: 100%;
+    }
+    .address-page-container .order-section{
+        display: block;
+    }
+    .address-page-container .order-section .total-amount-container{
+        margin-bottom: 1.4rem;
+        text-align: center;
+    }
+    .address-page-container .order-section .order-button-container{
+        text-align: center;
+    }
 }
