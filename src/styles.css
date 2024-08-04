@@ -5,6 +5,9 @@
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #333333;
     box-sizing: border-box;
+}
+
+p,div,span{
     font-size: large;
 }
 
@@ -18,4 +21,6 @@
     border: none;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    font-size: large;
+    cursor: pointer;
 }

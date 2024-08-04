@@ -1,0 +1,48 @@
+.schedule-page-container{
+    background-color: #f8f8f8;
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 70%;
+    margin: 1rem auto;
+}
+
+.schedule-page-container .schedule-form{
+    margin-bottom: 5rem;
+}
+
+.schedule-page-container .schedule-form .dates,.time-slots{
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0 2rem 0;
+    flex-wrap: wrap;
+}
+
+.schedule-page-container .schedule-form .dates .date,.time-slot{
+    border: 0.12rem solid var(--base-color);
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.schedule-page-container .schedule-form .dates .date.selected-date, .time-slot.selected-time-slot{
+    background-color: var(--base-color);
+    color: white;
+}
+
+.schedule-page-container .schedule-form .dates .date p{
+    text-align: center;
+}
+
+.schedule-page-container .schedule-form .dates .date.selected-date p{
+    color: white;
+}
+
+
+
+
+@media screen and (max-width: 850px) {
+    .schedule-page-container{
+        width: 100%;
+    }
+}

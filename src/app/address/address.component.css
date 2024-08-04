@@ -10,6 +10,12 @@
     padding: 2rem;
 }
 
+.address-page-container .address-form .line{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .address-page-container .address-form .form-field{
     margin: 1rem 0;
 }
@@ -33,35 +39,8 @@
     color: #999;
 }
 
-.address-page-container .order-section{
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    margin: 0 2rem;
-    border-radius: 2rem;
-    background-color: white;
-}
-
-.address-page-container .order-section .total-amount-container{
-    font-weight: bold;
-}
-
-.address-page-container .order-section .total-amount-container .total-amount-label{
-    color: #777;
-}
-
 @media screen and (max-width: 850px) {
     .address-page-container{
         width: 100%;
-    }
-    .address-page-container .order-section{
-        display: block;
-    }
-    .address-page-container .order-section .total-amount-container{
-        margin-bottom: 1.4rem;
-        text-align: center;
-    }
-    .address-page-container .order-section .order-button-container{
-        text-align: center;
     }
 }

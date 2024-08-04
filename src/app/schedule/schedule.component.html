@@ -1,0 +1,20 @@
+<div class="schedule-page-container">
+    <div class="schedule-form">
+        <h1>Select Date</h1>
+        <div class="dates">
+            @for(date of datesToShow; track date.date){
+                <div class="date" (click)="selectDate(date.date)" [ngClass]="{'selected-date':date.date===selectedDate}">
+                    <p>{{date.date}}</p>
+                    <p>{{date.day}}</p>
+                </div>
+            }
+        </div>
+        <h1>Select Time Slot</h1>
+        <div class="time-slots">
+            @for(timeSlot of timeSlots; track timeSlot){
+                <p class="time-slot" (click)="selectTimeSlot(timeSlot)" [ngClass]="{'selected-time-slot':timeSlot===selectedTimeSlot}">{{timeSlot}}</p>
+            }
+        </div>
+    </div>
+    <app-total-amount-section [btnLabel]="'Continue'"></app-total-amount-section>
+</div>

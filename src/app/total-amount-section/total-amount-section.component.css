@@ -1,0 +1,29 @@
+.total-amount-section{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    margin: 0 2rem;
+    border-radius: 2rem;
+    background-color: white;
+}
+
+.total-amount-section .total-amount-container{
+    font-weight: bold;
+}
+
+.total-amount-section .total-amount-container .total-amount-label{
+    color: #777;
+}
+
+@media screen and (max-width: 850px){
+    .total-amount-section{
+        display: block;
+    }
+    .total-amount-section .total-amount-container{
+        margin-bottom: 1.4rem;
+        text-align: center;
+    }
+    .total-amount-section .continue-button-container{
+        text-align: center;
+    }
+}
