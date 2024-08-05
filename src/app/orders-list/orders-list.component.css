@@ -1,0 +1,11 @@
+.orders-list-container{
+    padding: 2rem;
+}
+
+.orders-list-container .order{
+    display: flex;
+    justify-content: space-around;
+    background-color: aquamarine;
+    margin: 2rem;
+    flex-wrap: wrap;
+}

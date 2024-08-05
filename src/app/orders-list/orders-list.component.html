@@ -1,1 +1,45 @@
-<p>orders-list works!</p>
+<article class="orders-list-container">
+    <h2>Ongoing Orders</h2>
+    @for(order of ongoingOrdersList; track order.id){
+        <div class="order">
+            <div>
+                <p>Order Date</p>
+                <p>{{order.orderDate}}</p>
+            </div>
+            <div>
+                <p>Delivery Date</p>
+                <p>{{order.deliveryDate}}</p>
+            </div>
+            <div>
+                <p>Total Item</p>
+                <p>{{order.totalItem}}</p>
+            </div>
+            <div>
+                <p>Total Amount</p>
+                <p>{{order.totalAmount}}</p>
+            </div>
+        </div>
+    }
+
+    <h2>Past Orders</h2>
+    @for(order of pastOrdersList; track order.id){
+        <div class="order">
+            <div>
+                <p>Order Date</p>
+                <p>{{order.orderDate}}</p>
+            </div>
+            <div>
+                <p>Delivery Date</p>
+                <p>{{order.deliveryDate}}</p>
+            </div>
+            <div>
+                <p>Total Item</p>
+                <p>{{order.totalItem}}</p>
+            </div>
+            <div>
+                <p>Total Amount</p>
+                <p>{{order.totalAmount}}</p>
+            </div>
+        </div>
+    }
+</article>
