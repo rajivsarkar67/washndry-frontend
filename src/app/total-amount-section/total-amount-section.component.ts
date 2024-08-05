@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,15 +10,11 @@ import { Router } from '@angular/router';
 })
 export class TotalAmountSectionComponent {
   @Input() btnLabel: string = '';
+  @Output() emitNavigate = new EventEmitter<undefined>();
 
   constructor(private router: Router){}
 
   navigateToNextPage(){
-    if(this.router.url === '/schedule'){
-      this.router.navigate(['address']);
-    }
-    if(this.router.url === '/address'){
-      this.router.navigate(['orders-list']);
-    }
+    this.emitNavigate.emit();
   }
 }

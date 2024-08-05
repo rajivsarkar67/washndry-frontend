@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address',
@@ -9,5 +10,9 @@ import { TotalAmountSectionComponent } from "../total-amount-section/total-amoun
   styleUrl: './address.component.css'
 })
 export class AddressComponent {
-
+  constructor(private router: Router){}
+  
+  navigateToNextPage(){
+    this.router.navigate(['orders-list']);
+  }
 }
