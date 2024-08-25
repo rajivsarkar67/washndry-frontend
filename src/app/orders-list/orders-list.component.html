@@ -2,21 +2,26 @@
     <h2>Ongoing Orders</h2>
     @for(order of ongoingOrdersList; track order.id){
         <div class="order">
-            <div>
-                <p>Order Date</p>
-                <p>{{order.orderDate}}</p>
+            <div class="image-container">
+                <img src="ongoing.png">
             </div>
-            <div>
-                <p>Delivery Date</p>
-                <p>{{order.deliveryDate}}</p>
-            </div>
-            <div>
-                <p>Total Item</p>
-                <p>{{order.totalItem}}</p>
-            </div>
-            <div>
-                <p>Total Amount</p>
-                <p>{{order.totalAmount}}</p>
+            <div class="order-details">
+                <div>
+                    <p><strong>Order Date</strong></p>
+                    <p>{{order.orderDate}}</p>
+                </div>
+                <div>
+                    <p><strong>Pickup Date</strong></p>
+                    <p>{{order.pickupDate}}</p>
+                </div>
+                <div>
+                    <p><strong>Total Item</strong></p>
+                    <p>{{order.totalItem}}</p>
+                </div>
+                <div>
+                    <p><strong>Total Amount</strong></p>
+                    <p>{{order.totalAmount}}</p>
+                </div>
             </div>
         </div>
     }
@@ -24,22 +29,29 @@
     <h2>Past Orders</h2>
     @for(order of pastOrdersList; track order.id){
         <div class="order">
-            <div>
-                <p>Order Date</p>
-                <p>{{order.orderDate}}</p>
+            <div class="image-container">
+                <img src="completed.png">
             </div>
-            <div>
-                <p>Delivery Date</p>
-                <p>{{order.deliveryDate}}</p>
-            </div>
-            <div>
-                <p>Total Item</p>
-                <p>{{order.totalItem}}</p>
-            </div>
-            <div>
-                <p>Total Amount</p>
-                <p>{{order.totalAmount}}</p>
+            <div class="order-details">
+                <div>
+                    <p><strong>Order Date</strong></p>
+                    <p>{{order.orderDate}}</p>
+                </div>
+                <div>
+                    <p><strong>Delivery Date</strong></p>
+                    <p>{{order.deliveryDate}}</p>
+                </div>
+                <div>
+                    <p><strong>Total Item</strong></p>
+                    <p>{{order.totalItem}}</p>
+                </div>
+                <div>
+                    <p><strong>Total Amount</strong></p>
+                    <p>{{order.totalAmount}}</p>
+                </div>
             </div>
         </div>
     }
+
+    <button class="primary-button order-again-button" (click)="goToSelection()">Order Again</button>
 </article>

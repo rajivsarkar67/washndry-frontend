@@ -1,7 +1,44 @@
 .selection-page-container{
     background-color: #f8f8f8;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 2rem;
     width: 70%;
     margin: 1rem auto;
+}
+
+.selection-page-container .items-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.selection-page-container .items-list .item{
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 14rem;
+}
+
+.selection-page-container .items-list .item .snapshot,.title,.controller{
+    text-align: center;
+}
+
+.selection-page-container .items-list .item .snapshot img{
+    border-radius: 1.65rem;
+    border: 0.15rem solid var(--base-color);
+    padding: 1rem;
+}
+
+.selection-page-container .items-list .item .controller button{
+    width: 2rem;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+}
+
+@media screen and (max-width: 550px) {
+    .selection-page-container{
+        width: 100%;
+    }
 }

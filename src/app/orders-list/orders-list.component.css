@@ -3,9 +3,44 @@
 }
 
 .orders-list-container .order{
-    display: flex;
+    margin: 1rem;
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.orders-list-container .order .image-container{
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.orders-list-container .order .image-container img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.orders-list-container .order .order-details{
+    width: 90%;
+    vertical-align: middle;
+    display: inline-flex;
     justify-content: space-around;
-    background-color: aquamarine;
-    margin: 2rem;
     flex-wrap: wrap;
+}
+
+.orders-list-container .order-again-button{
+    display: block;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 550px){
+    .orders-list-container .order .image-container{
+        display: none;
+    }
+    .orders-list-container .order .order-details{
+        width: 100%;
+    }
+    .orders-list-container .order .order-details div{
+        margin: 1rem 0;
+    }
 }

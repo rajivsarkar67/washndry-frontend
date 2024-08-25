@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders-list',
@@ -9,9 +10,11 @@ import { Component } from '@angular/core';
 })
 export class OrdersListComponent {
 
+  constructor(private router: Router){}
+
   ongoingOrdersList = [
-    {id: 7, orderDate: '5 Aug 2024', deliveryDate: '10 Aug 2024', totalItem: 10, totalAmount: 100},
-    {id: 4, orderDate: '3 Aug 2024', deliveryDate: '11 Aug 2024', totalItem: 20, totalAmount: 230},
+    {id: 7, orderDate: '5 Aug 2024', pickupDate: '10 Aug 2024', totalItem: 10, totalAmount: 100},
+    {id: 4, orderDate: '3 Aug 2024', pickupDate: '11 Aug 2024', totalItem: 20, totalAmount: 230},
   ];
 
   pastOrdersList = [
@@ -19,4 +22,8 @@ export class OrdersListComponent {
     {id: 2, orderDate: '10 Jul 2024', deliveryDate: '15 Jul 2024', totalItem: 6, totalAmount: 50},
     {id: 3, orderDate: '19 Jul 2024', deliveryDate: '23 Jul 2024', totalItem: 12, totalAmount: 100},
   ];
+
+  goToSelection(){
+    this.router.navigate(['selection']);
+  }
 }

@@ -22,13 +22,14 @@ export class ScheduleComponent implements OnInit{
 
   ngOnInit(){
     this.datesToShow = this.getWeekDays();
+    this.datesToShow.shift();
   }
 
   getWeekDays() {
       const today = new Date();
       const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       
-      return Array.from({ length: 7 }, (_, i) => {
+      return Array.from({ length: 8 }, (_, i) => {
           const date = new Date(today);
           date.setDate(today.getDate() + i);
           

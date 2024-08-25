@@ -1,5 +1,20 @@
 <div class="selection-page-container">
-    <div class="select-items-container">
-        
+    <div class="items-list">
+        @for(item of itemsList; track item.name){
+            <div class="item">
+                <div class="snapshot">
+                    <img [src]="item.snapshot">
+                </div>
+                <div class="title">
+                    {{item.name}} - &#8377;{{item.cost}}
+                </div>
+                <div class="controller">
+                    <button (click)="changeQuantity('decrease', $index)"><strong>-</strong></button>
+                    <span> &nbsp;&nbsp;&nbsp;{{item.quantity}}&nbsp;&nbsp;&nbsp; </span>
+                    <button (click)="changeQuantity('increase', $index)"><strong>+</strong></button>
+                </div>
+            </div>
+        }
     </div>
+    <app-total-amount-section [btnLabel]="'Continue'" (emitNavigate)="navigateToNextPage()"></app-total-amount-section>
 </div>
