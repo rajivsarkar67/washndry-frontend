@@ -1,33 +1,41 @@
-<header class="top-bar">
-    <p>Logo Placeholder</p>
-    <button class="primary-button">Login</button>
-</header>
-<main class="main-section">
-    <div class="demo-image">Image Placeholder</div>
-    <div class="text-section">
-        <h1>Welcome to the Ultimate Laundry Experience</h1>
-        <h4>Revolutionize your laundry routine with our convenient and efficient services</h4>
-        <button class="primary-button">Book Now</button>
-    </div>
-</main>
-<section class="how-it-works">
-    <h1>How it Works?</h1>
-    <ol>
-        <li>
-            <h4>Schedule a Pickup</h4>
-            <p>Choose a convenient date and time for our laundry professionals to pick up your dirty clothes.</p>
-        </li>
-        <li>
-            <h4>Laundry Pickup</h4>
-            <p>Our team will arrive at your doorstep to collect your laundry bags.</p>
-        </li>
-        <li>
-            <h4>Professional Cleaning</h4>
-            <p>We use high quality detergents to ensure your clothes are cleaned to perfection.</p>
-        </li>
-        <li>
-            <h4>Delivery</h4>
-            <p>We will deliver your freshly cleaned and neatly folded clothes right to your doorstep.</p>
-        </li>
-    </ol>
-</section>
+<app-header></app-header>
+
+<div class="landing-page">
+    <main class="main-section">
+        <div class="demo-image">
+            <img src="laundry.jpg">
+        </div>
+        <div class="text-section">
+            <div>
+                <h1>Welcome to the Ultimate Laundry Experience</h1>
+                <h3>Revolutionize your laundry routine with our convenient and efficient services</h3>
+                <button class="primary-button" (click)="goToSelection()">Book Now</button>
+            </div>
+        </div>
+    </main>
+    <section class="how-it-works">
+        <h1>How it Works?</h1>
+        <ol>
+            <li>
+                <p class="number"><span>1</span></p>
+                <h3>Schedule a Pickup</h3>
+                <p>Choose a convenient date and time for our laundry professionals to pick up your dirty clothes.</p>
+            </li>
+            <li>
+                <p class="number"><span>2</span></p>
+                <h3>Laundry Pickup</h3>
+                <p>Our team will arrive at your doorstep to collect your laundry bags.</p>
+            </li>
+            <li>
+                <p class="number"><span>3</span></p>
+                <h3>Professional Cleaning</h3>
+                <p>We use high quality detergents to ensure your clothes are cleaned to perfection.</p>
+            </li>
+            <li>
+                <p class="number"><span>4</span></p>
+                <h3>Delivery</h3>
+                <p>We will deliver your freshly cleaned and neatly folded clothes right to your doorstep.</p>
+            </li>
+        </ol>
+    </section>
+</div>

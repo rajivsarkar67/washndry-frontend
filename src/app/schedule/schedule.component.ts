@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [TotalAmountSectionComponent, CommonModule],
+  imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css'
 })

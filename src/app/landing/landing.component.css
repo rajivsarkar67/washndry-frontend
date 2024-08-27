@@ -1,44 +1,99 @@
-/* color: 119c4c */
-
-.top-bar{
-    display: flex;
-    justify-content: space-between;
-    background-color: palegreen;
-    padding: 0.5rem;
+.landing-page{
+    background-color: #f8f8f8;
+    padding: 2rem;
 }
 
-.main-section{
+.landing-page .main-section{
     display: flex;
-    width: 100%;
-    justify-content: space-between;
     padding: 0.5rem;
-    background-color: bisque;
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
-.main-section .demo-image{
-    background-color: aquamarine;
-    width: 400px;
+.landing-page .main-section .demo-image{
+    width: 30%;
     height: 500px;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.main-section .text-section{
+.landing-page .main-section .demo-image img{
+    height: 90%;
+    width: 80%;
+    border-radius: 10rem;
+}
+
+.landing-page .main-section .text-section{
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
     padding-left: 1rem;
-}
-
-
-
-.how-it-works h1{
     text-align: center;
 }
 
-.how-it-works ol{
-    display: flex;
-    justify-content: space-between;  
-    padding: 0 3rem;
-    margin-top: 1.5rem;
+.landing-page .main-section .text-section h3{
+    color: #888;
+    margin-top: 1rem;
 }
 
-.how-it-works ol li{
+.landing-page .main-section .text-section button{
+    font-size: xx-large;
+    margin-top: 1rem;
+}
+
+.landing-page .how-it-works h1{
+    text-align: center;
+    font-size: 2em;
+}
+
+.landing-page .how-it-works ol{
+    padding: 0 3rem;
+    margin-top: 1.5rem;
+    list-style-type: none;
+}
+
+.landing-page .how-it-works ol li{
     margin: 0 1rem;
+    text-align: center;
+    display: inline-block;
+    width: 22%;
+}
+
+.landing-page .how-it-works ol li .number{
+    margin: 3rem 0;
+    transform: rotate(-10deg);
+}
+
+.landing-page .how-it-works ol li .number span{
+    background-color: var(--base-color);
+    padding: 1.5rem;
+    color: white;
+    border-radius: 5rem;
+}
+
+.landing-page .how-it-works ol li h3{
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 850px) {
+    .landing-page .main-section{
+        display: block;
+    }
+    .landing-page .main-section .demo-image{
+        width: 100%;
+    }
+    .landing-page .main-section .text-section{
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .landing-page .how-it-works ol li{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1250px) {
+    .landing-page .how-it-works ol li{
+        width: 43%;
+    }
 }
