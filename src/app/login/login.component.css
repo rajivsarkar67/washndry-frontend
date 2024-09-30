@@ -1,0 +1,29 @@
+#login-page{
+    width: 50%;
+    background-color: #f8f8f8;
+    margin: 5rem auto;
+    padding: 2rem;
+}
+
+#login-page h2{
+    text-align: center;
+}
+
+#login-page .field label,input{
+    margin: 1rem;
+}
+
+#login-page .field input{
+    height: 2rem;
+    padding-left: 1rem;
+}
+
+#login-page .field button{
+    margin: 0 0 2rem 1rem;
+}
+
+@media screen and (max-width: 550px){
+    #login-page{
+        width: 90%;
+    }
+}

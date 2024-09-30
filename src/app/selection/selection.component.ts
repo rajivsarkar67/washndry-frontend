@@ -19,9 +19,8 @@ export class SelectionComponent {
     {name: 'Shirt', cost: 10, snapshot: 'shirt.png', quantity: 0},
     {name: 'Jeans/Pant', cost: 10, snapshot: 'pant.png', quantity: 0},
     {name: 'Saree', cost: 10, snapshot: 'saree.png', quantity: 0},
-    {name: 'Suit', cost: 10, snapshot: 'tshirt.png', quantity: 0},
     {name: 'Sweater', cost: 10, snapshot: 'sweater.png', quantity: 0},
-    {name: 'Undergarment', cost: 10, snapshot: 'tshirt.png', quantity: 0},
+    {name: 'Undergarment', cost: 10, snapshot: 'undergarment.png', quantity: 0},
   ];
 
   navigateToNextPage(){
