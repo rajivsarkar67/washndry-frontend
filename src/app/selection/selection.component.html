@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="selection-page-container">
     <div class="items-list">
-        @for(item of itemsList; track item.name){
+        @for(item of dataService.itemsList; track item.name){
             <div class="item">
                 <div class="snapshot">
                     <img [src]="item.snapshot">
@@ -10,7 +10,7 @@
                     {{item.name}} - &#8377;{{item.cost}}
                 </div>
                 <div class="controller">
-                    <button (click)="changeQuantity('decrease', $index)"><strong>-</strong></button>
+                    <button (click)="changeQuantity('decrease', $index)" [disabled]="item.quantity===0"><strong>-</strong></button>
                     <span> &nbsp;&nbsp;&nbsp;{{item.quantity}}&nbsp;&nbsp;&nbsp; </span>
                     <button (click)="changeQuantity('increase', $index)"><strong>+</strong></button>
                 </div>

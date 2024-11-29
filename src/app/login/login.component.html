@@ -5,13 +5,21 @@
         <br>
         <input id="phone-number" type="number" placeholder="Phone Number">
         <br>
-        <button class="primary-button">Get OTP / Resend OTP</button>
+        <button class="primary-button" (click)="sendOtp()" [disabled]="hasReceivedOtp">Get OTP / Resend OTP</button>
     </div>
+    @if(isGetOtpClicked){
+        <p class="otp-resend-text">
+            Didn't received OTP? Try resending again 
+            @if(hasReceivedOtp){
+                <span class="otp-resend-text">in {{resendOtpTimer-1}} seconds</span>
+            }
+        </p>
+    }
     <div class="field" id="otp-field">
         <label for="otp">Enter 4-digit OTP</label>
         <br>
         <input id="otp" type="number" placeholder="OTP">
         <br>
-        <button class="primary-button">Login</button>
+        <button class="primary-button" [disabled]="!isGetOtpClicked" (click)="goToSelection()">Login</button>
     </div>
 </div>

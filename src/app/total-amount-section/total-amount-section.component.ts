@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-total-amount-section',
@@ -12,7 +13,7 @@ export class TotalAmountSectionComponent {
   @Input() btnLabel: string = '';
   @Output() emitNavigate = new EventEmitter<undefined>();
 
-  constructor(private router: Router){}
+  constructor(public dataService: DataService){}
 
   navigateToNextPage(){
     this.emitNavigate.emit();

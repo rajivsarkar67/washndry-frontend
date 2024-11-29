@@ -12,7 +12,8 @@ p,div,span{
 }
 
 :root{
-    --base-color: #119c4c;
+    --base-color: rgb(17, 156, 76);
+    --disabled-button-color: rgb(17, 156, 76, 0.4);
 }
 
 .primary-button{
@@ -23,4 +24,8 @@ p,div,span{
     padding: 0.5rem;
     font-size: large;
     cursor: pointer;
+}
+
+.primary-button:disabled{
+    background-color: var(--disabled-button-color);
 }
