@@ -3,6 +3,7 @@ import { TotalAmountSectionComponent } from "../total-amount-section/total-amoun
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-schedule',
@@ -19,7 +20,7 @@ export class ScheduleComponent implements OnInit{
   selectedDate = 0;
   selectedTimeSlot = '';
 
-  constructor(private router: Router){}
+  constructor(private router: Router, public dataService: DataService){}
 
   ngOnInit(){
     this.datesToShow = this.getWeekDays();

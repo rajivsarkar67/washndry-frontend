@@ -17,5 +17,5 @@
             </div>
         }
     </div>
-    <app-total-amount-section [btnLabel]="'Continue'" (emitNavigate)="navigateToNextPage()"></app-total-amount-section>
+    <app-total-amount-section [btnLabel]="'Continue'" [btnDisabled]="dataService.totalPrice ? false: true" (emitNavigate)="navigateToNextPage()"></app-total-amount-section>
 </div>

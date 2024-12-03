@@ -3,9 +3,9 @@
     <div class="field" id="phone-field">
         <label for="phone-number">Mobile Number</label>
         <br>
-        <input id="phone-number" type="number" placeholder="Phone Number">
+        <input id="phone-number" type="number" placeholder="Phone Number" #phoneNumber>
         <br>
-        <button class="primary-button" (click)="sendOtp()" [disabled]="hasReceivedOtp">Get OTP / Resend OTP</button>
+        <button class="primary-button" (click)="sendOtp(+phoneNumber.value)" [disabled]="hasReceivedOtp">Get OTP / Resend OTP</button>
     </div>
     @if(isGetOtpClicked){
         <p class="otp-resend-text">
@@ -18,8 +18,8 @@
     <div class="field" id="otp-field">
         <label for="otp">Enter 4-digit OTP</label>
         <br>
-        <input id="otp" type="number" placeholder="OTP">
+        <input id="otp" type="number" placeholder="OTP" #otp>
         <br>
-        <button class="primary-button" [disabled]="!isGetOtpClicked" (click)="goToSelection()">Login</button>
+        <button class="primary-button" [disabled]="!isGetOtpClicked" (click)="goToSelection(+otp.value)">Login</button>
     </div>
 </div>

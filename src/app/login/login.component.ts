@@ -15,7 +15,11 @@ export class LoginComponent {
   hasReceivedOtp: boolean = false;
   resendOtpTimer: number = 60;
 
-  sendOtp(){
+  sendOtp(phoneNumber: number){
+    if(!phoneNumber){
+      alert('Phone Number cannot be empty!');
+      return;
+    }
     this.isGetOtpClicked = true;
     this.hasReceivedOtp = true;
 
@@ -30,7 +34,11 @@ export class LoginComponent {
     }, 1000)
   }
 
-  goToSelection(){
+  goToSelection(otp: number){
+    if(!otp){
+      alert('OTP cannot be empty!');
+      return;
+    }
     this.router.navigate(['selection']);
   }
 

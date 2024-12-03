@@ -11,6 +11,7 @@ import { DataService } from '../data.service';
 })
 export class TotalAmountSectionComponent {
   @Input() btnLabel: string = '';
+  @Input() btnDisabled: boolean = false;
   @Output() emitNavigate = new EventEmitter<undefined>();
 
   constructor(public dataService: DataService){}

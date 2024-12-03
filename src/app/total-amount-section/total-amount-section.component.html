@@ -4,6 +4,6 @@
         <p class="total-amount-value">{{dataService.totalItems}} Items | &#8377; {{dataService.totalPrice}}</p>
     </div>
     <div class="continue-button-container">
-        <button class="primary-button" (click)="navigateToNextPage()">{{btnLabel}}</button>
+        <button class="primary-button" (click)="navigateToNextPage()" [disabled]="btnDisabled">{{btnLabel}}</button>
     </div>
 </section>
