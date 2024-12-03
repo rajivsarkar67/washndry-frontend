@@ -15,7 +15,6 @@ export class AddressComponent {
   constructor(private router: Router, public dataService: DataService){}
   
   navigateToNextPage(...formValues: any[]){
-    console.log(formValues);
     let isFormInvalid = formValues.some(value => {
       return value==='';
     })
