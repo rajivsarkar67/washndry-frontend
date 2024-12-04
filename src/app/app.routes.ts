@@ -5,12 +5,13 @@ import { AddressComponent } from './address/address.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { SelectionComponent } from './selection/selection.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {path: '', component: LandingComponent},
-    {path: 'selection', component: SelectionComponent},
-    {path: 'schedule', component: ScheduleComponent},
-    {path: 'address', component: AddressComponent},
-    {path: 'orders-list', component: OrdersListComponent},
+    {path: 'selection', component: SelectionComponent, canActivate: [authGuard]},
+    {path: 'schedule', component: ScheduleComponent, canActivate: [authGuard]},
+    {path: 'address', component: AddressComponent, canActivate: [authGuard]},
+    {path: 'orders-list', component: OrdersListComponent, canActivate: [authGuard]},
     {path: 'login', component: LoginComponent},
 ];

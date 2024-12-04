@@ -40,7 +40,7 @@
             </div>
         </div>
     </form>
-    <app-total-amount-section [btnLabel]="'Login & Proceed'" [btnDisabled]="dataService.totalPrice ? false: true" 
+    <app-total-amount-section [btnLabel]="'Copmlete Order'" [btnDisabled]="dataService.totalPrice ? false: true" 
         (emitNavigate)="navigateToNextPage(firstName.value, lastName.value, emailId.value, fullAddress.value, pincode.value, city.value, state.value, country.value)">
     </app-total-amount-section>
 </div>

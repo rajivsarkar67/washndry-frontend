@@ -1,4 +1,9 @@
 <header class="top-bar">
     <p>Logo Placeholder</p>
-    <button class="primary-button" (click)="goToLogin()">Login</button>
+    @if(!dataService.isLoggedIn){
+        <button class="primary-button" (click)="goToLogin()">Login</button>
+    }
+    @else{
+        <button class="primary-button" (click)="logout()">Logout</button>
+    }
 </header>

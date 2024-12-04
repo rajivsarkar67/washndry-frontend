@@ -1,7 +1,7 @@
 <app-header></app-header>
 <article class="orders-list-container">
     <h2>Ongoing Orders</h2>
-    @for(order of ongoingOrdersList; track order.id){
+    @for(order of dataService.ongoingOrdersList; track order.id){
         <div class="order">
             <div class="image-container">
                 <img src="ongoing.png">
@@ -28,7 +28,7 @@
     }
 
     <h2>Past Orders</h2>
-    @for(order of pastOrdersList; track order.id){
+    @for(order of dataService.pastOrdersList; track order.id){
         <div class="order">
             <div class="image-container">
                 <img src="completed.png">

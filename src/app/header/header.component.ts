@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, public dataService: DataService){}
 
   goToLogin(){
+    this.router.navigate(['login']);
+  }
+
+  logout(){
+    this.dataService.isLoggedIn = false;
     this.router.navigate(['login']);
   }
 }

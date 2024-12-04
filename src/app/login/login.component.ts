@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router: Router){}
+  constructor(private router: Router, private dataService: DataService){}
 
   isGetOtpClicked: boolean = false;
   hasReceivedOtp: boolean = false;
@@ -39,6 +40,7 @@ export class LoginComponent {
       alert('OTP cannot be empty!');
       return;
     }
+    this.dataService.isLoggedIn = true;
     this.router.navigate(['selection']);
   }
 
