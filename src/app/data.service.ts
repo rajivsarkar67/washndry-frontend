@@ -27,6 +27,8 @@ export class DataService {
     {id: 3, orderDate: '19 Jul 2024', deliveryDate: '23 Jul 2024', totalItem: 12, totalAmount: 100},
   ];
 
+  // orderDetails = {orderDate: '', pickupDate: '', totalItem: 0, totalAmount: 0};
+
   totalItems: number = 0;
   totalPrice: number = 0;
   isLoggedIn: boolean = false;
@@ -38,6 +40,13 @@ export class DataService {
       this.totalItems = this.totalItems + el.quantity;
       this.totalPrice = this.totalPrice + (el.quantity * el.cost);
     })
+  }
+
+  emptyItemsList(){
+    this.itemsList.map(el => {
+      el.quantity = 0;
+    })
+    console.log(this.itemsList);
   }
 
 }

@@ -19,6 +19,7 @@ export class HeaderComponent {
 
   logout(){
     this.dataService.isLoggedIn = false;
+    this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }
 }
