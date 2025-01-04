@@ -1,6 +1,6 @@
 <header class="top-bar">
     <p>Logo Placeholder</p>
-    @if(!dataService.isLoggedIn){
+    @if(!isLoggedIn){
         <button class="primary-button" (click)="goToLogin()">Login</button>
     }
     @else{

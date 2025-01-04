@@ -11,14 +11,24 @@ import { DataService } from '../data.service';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, public dataService: DataService){}
+  isLoggedIn: boolean = false;
+
+  constructor(private router: Router, public dataService: DataService){
+    console.log(localStorage.getItem('isLoggedIn'));
+    if(localStorage.getItem('isLoggedIn') === 'true'){
+      this.isLoggedIn = true;
+    }
+    else{
+      this.isLoggedIn = false;
+    }
+  }
 
   goToLogin(){
     this.router.navigate(['login']);
   }
 
   logout(){
-    this.dataService.isLoggedIn = false;
+    localStorage.setItem('isLoggedIn', 'false');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }

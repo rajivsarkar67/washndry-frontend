@@ -31,7 +31,6 @@ export class DataService {
 
   totalItems: number = 0;
   totalPrice: number = 0;
-  isLoggedIn: boolean = false;
 
   calculateTotalItemsAndPrice(){
     this.totalItems = 0;

@@ -40,7 +40,7 @@ export class LoginComponent {
       alert('OTP cannot be empty!');
       return;
     }
-    this.dataService.isLoggedIn = true;
+    localStorage.setItem('isLoggedIn', 'true');
     this.router.navigate(['selection']);
   }
 
