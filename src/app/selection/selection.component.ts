@@ -15,7 +15,19 @@ export class SelectionComponent {
 
   constructor(private router: Router, public dataService: DataService){}
 
+  ngOnInit(){
+    console.log('ngOninit called');
+    if(localStorage.getItem('washndrySelection')){
+      console.log('on refresh of page');
+      console.log(localStorage.getItem('washndrySelection'));
+      this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
+      console.log(this.dataService.itemsList);
+      this.dataService.calculateTotalItemsAndPrice();
+    }
+  }
+
   navigateToNextPage(){
+    localStorage.setItem('washndrySelection', JSON.stringify(this.dataService.itemsList));
     this.router.navigate(['schedule']);
   }
 

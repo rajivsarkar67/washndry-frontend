@@ -27,8 +27,6 @@ export class DataService {
     {id: 3, orderDate: '19 Jul 2024', deliveryDate: '23 Jul 2024', totalItem: 12, totalAmount: 100},
   ];
 
-  // orderDetails = {orderDate: '', pickupDate: '', totalItem: 0, totalAmount: 0};
-
   totalItems: number = 0;
   totalPrice: number = 0;
 
