@@ -16,6 +16,13 @@ export class TotalAmountSectionComponent {
 
   constructor(public dataService: DataService){}
 
+  ngOnInit(){
+    if(localStorage.getItem('washndrySelection')){
+      this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
+      this.dataService.calculateTotalItemsAndPrice();
+    }
+  }
+
   navigateToNextPage(){
     this.emitNavigate.emit();
   }

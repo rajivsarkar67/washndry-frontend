@@ -17,14 +17,17 @@ export class ScheduleComponent implements OnInit{
   datesToShow: any = [];
   timeSlots=['8am-10am','10am-12pm','12pm-2pm','2pm-4pm','4pm-6pm','6pm-8pm'];
 
-  selectedDate = 0;
-  selectedTimeSlot = '';
-
   constructor(private router: Router, public dataService: DataService){}
 
   ngOnInit(){
     this.datesToShow = this.getWeekDays();
     this.datesToShow.shift();
+    if(localStorage.getItem('washndrySelectedDate')){
+    this.dataService.selectedDate = localStorage.getItem('washndrySelectedDate') as string;
+    }
+    if(localStorage.getItem('washndrySelectedTimeSlot')){
+     this.dataService.selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot') as string; 
+    }
   }
 
   getWeekDays() {
@@ -42,19 +45,23 @@ export class ScheduleComponent implements OnInit{
     });
   }
 
-  selectDate(date: number){
-    this.selectedDate = date;
+  selectDate(date: string){
+    this.dataService.selectedDate = date;
   }
 
   selectTimeSlot(timeSlot: string){
-    this.selectedTimeSlot = timeSlot;
+    this.dataService.selectedTimeSlot = timeSlot;
   }
 
   navigateToNextPage(){
-    if(this.selectedDate === 0 || this.selectedTimeSlot===''){
+    if(this.dataService.selectedDate === '' || this.dataService.selectedTimeSlot===''){
       alert('Please select a date and time slot first');
       return;
     }
-    this.router.navigate(['address']);
+    else{
+      localStorage.setItem('washndrySelectedDate', this.dataService.selectedDate.toString());
+      localStorage.setItem('washndrySelectedTimeSlot', this.dataService.selectedTimeSlot);
+      this.router.navigate(['address']);
+    }
   }
 }

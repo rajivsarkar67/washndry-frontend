@@ -30,7 +30,11 @@ export class DataService {
   totalItems: number = 0;
   totalPrice: number = 0;
 
+  selectedDate: string = '';
+  selectedTimeSlot: string = '';
+
   calculateTotalItemsAndPrice(){
+    console.log('calculateTotalItemsAndPrice called');
     this.totalItems = 0;
     this.totalPrice = 0;
     this.itemsList.forEach(el => {
@@ -43,7 +47,6 @@ export class DataService {
     this.itemsList.map(el => {
       el.quantity = 0;
     })
-    console.log(this.itemsList);
   }
 
 }
