@@ -1,0 +1,29 @@
+<div id="signup-page">
+    <h2>Signup</h2>
+    <div class="field">
+        <label for="phone">Phone</label>
+        <br>
+        <input id="phone" type="number" placeholder="Phone" #phone>
+        <br>
+    </div>
+    <div class="field">
+        <label for="name">Name</label>
+        <br>
+        <input id="name" type="string" placeholder="Name" #name>
+        <br>
+    </div>
+    <div class="field">
+        <label for="password">Password</label>
+        <br>
+        <input id="password" type="password" placeholder="Password" #password>
+        <br>
+    </div>
+    <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <br>
+        <input id="confirmPassword" type="password" placeholder="Confirm Password" #confirmPassword>
+        <br>
+    </div>
+    <button class="primary-button" (click)="goToLogin(phone.value, name.value, password.value, confirmPassword.value)">Signup</button>
+    <a [routerLink]="['/login']">Already have an account? Go to Login</a>
+</div>

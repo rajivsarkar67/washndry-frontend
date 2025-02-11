@@ -1,47 +1,35 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router: Router, private dataService: DataService){}
+  constructor(private router: Router, private dataService: DataService, private http: HttpClient){}
 
   isGetOtpClicked: boolean = false;
   hasReceivedOtp: boolean = false;
   resendOtpTimer: number = 60;
 
-  sendOtp(phoneNumber: number){
-    if(!phoneNumber){
-      alert('Phone Number cannot be empty!');
+  goToSelection(email: string, password: string){
+    if(!email || !password){
+      alert('Email or Password cannot be empty!');
       return;
     }
-    this.isGetOtpClicked = true;
-    this.hasReceivedOtp = true;
-
-    const otpTimeout = setTimeout(()=>{
-      this.hasReceivedOtp = false;
-      clearInterval(otpTimer);
-      this.resendOtpTimer = 60;
-    }, 60000)
-
-    const otpTimer = setInterval(()=>{
-      this.resendOtpTimer = this.resendOtpTimer - 1;
-    }, 1000)
-  }
-
-  goToSelection(otp: number){
-    if(!otp){
-      alert('OTP cannot be empty!');
-      return;
-    }
-    localStorage.setItem('isLoggedIn', 'true');
-    this.router.navigate(['selection']);
+    this.http.post('http://localhost:5000/api/login', {phoneNumber: email, password: password}).subscribe(res => {
+      console.log(res);
+      localStorage.setItem('washndryIsLoggedIn', 'true');
+      this.router.navigate(['selection']);
+    }, (error)=> {
+      alert(error.error.message);
+    })
   }
 
 }

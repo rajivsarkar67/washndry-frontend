@@ -11,15 +11,14 @@ import { DataService } from '../data.service';
 })
 export class HeaderComponent {
 
-  isLoggedIn: boolean = false;
+  washndryIsLoggedIn: boolean = false;
 
   constructor(private router: Router, public dataService: DataService){
-    console.log(localStorage.getItem('isLoggedIn'));
-    if(localStorage.getItem('isLoggedIn') === 'true'){
-      this.isLoggedIn = true;
+    if(localStorage.getItem('washndryIsLoggedIn') === 'true'){
+      this.washndryIsLoggedIn = true;
     }
     else{
-      this.isLoggedIn = false;
+      this.washndryIsLoggedIn = false;
     }
   }
 
@@ -28,7 +27,7 @@ export class HeaderComponent {
   }
 
   logout(){
-    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('washndryIsLoggedIn', 'false');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }

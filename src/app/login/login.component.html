@@ -1,25 +1,17 @@
 <div id="login-page">
     <h2>Login</h2>
-    <div class="field" id="phone-field">
-        <label for="phone-number">Mobile Number</label>
+    <div class="field">
+        <label for="phone">Phone</label>
         <br>
-        <input id="phone-number" type="number" placeholder="Phone Number" #phoneNumber>
+        <input id="phone" type="number" placeholder="Phone" #phone>
         <br>
-        <button class="primary-button" (click)="sendOtp(+phoneNumber.value)" [disabled]="hasReceivedOtp">Get OTP / Resend OTP</button>
     </div>
-    @if(isGetOtpClicked){
-        <p class="otp-resend-text">
-            Didn't received OTP? Try resending again 
-            @if(hasReceivedOtp){
-                <span class="otp-resend-text">in {{resendOtpTimer-1}} seconds</span>
-            }
-        </p>
-    }
-    <div class="field" id="otp-field">
-        <label for="otp">Enter 4-digit OTP</label>
+    <div class="field">
+        <label for="password">Password</label>
         <br>
-        <input id="otp" type="number" placeholder="OTP" #otp>
+        <input id="password" type="password" placeholder="Password" #password>
         <br>
-        <button class="primary-button" [disabled]="!isGetOtpClicked" (click)="goToSelection(+otp.value)">Login</button>
     </div>
+    <button class="primary-button" (click)="goToSelection(phone.value, password.value)">Login</button>
+    <a [routerLink]="['/signup']">Coming for the first time? Go to Signup</a>
 </div>

@@ -1,35 +1,35 @@
-#login-page{
+#signup-page{
     width: 50%;
     background-color: #f8f8f8;
     margin: 5rem auto;
     padding: 2rem;
 }
 
-#login-page h2{
+#signup-page h2{
     text-align: center;
 }
 
-#login-page .field label,input{
+#signup-page .field label,input{
     margin: 1rem;
 }
 
-#login-page .field input{
+#signup-page .field input{
     height: 2rem;
     padding-left: 1rem;
 }
 
-#login-page button{
+#signup-page button{
     margin: 0 0 0 1rem;
 }
 
-#login-page a{
+#signup-page a{
     margin-left: 1rem;
     display: block;
     margin-top: 1rem;
 }
 
 @media screen and (max-width: 550px){
-    #login-page{
+    #signup-page{
         width: 90%;
     }
 }

@@ -5,7 +5,7 @@ import { DataService } from './data.service';
 export const authGuard: CanActivateFn = (route, state) => {
   const dataService = inject(DataService);
   const router = inject(Router);
-  if(localStorage.getItem('isLoggedIn') === 'true'){
+  if(localStorage.getItem('washndryIsLoggedIn') === 'true'){
     return true;
   }
   else{

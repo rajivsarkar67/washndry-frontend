@@ -6,6 +6,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { SelectionComponent } from './selection/selection.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './auth.guard';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
     {path: '', component: LandingComponent},
@@ -14,4 +15,5 @@ export const routes: Routes = [
     {path: 'address', component: AddressComponent, canActivate: [authGuard]},
     {path: 'orders-list', component: OrdersListComponent, canActivate: [authGuard]},
     {path: 'login', component: LoginComponent},
+    {path: 'signup', component: SignupComponent},
 ];
