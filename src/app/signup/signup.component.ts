@@ -13,8 +13,8 @@ import { Router, RouterLink } from '@angular/router';
 export class SignupComponent {
   constructor(private router: Router, private http: HttpClient){}
 
-  goToLogin(phone: string, name: string, password: string, confirmPassword: string){
-    this.http.post('http://localhost:5000/api/register',{phoneNumber: phone, name: name, password: password, confirmPassword: confirmPassword}).subscribe(res => {
+  goToLogin(phone: string, password: string, confirmPassword: string){
+    this.http.post('http://localhost:5000/api/signup',{phoneNumber: phone, password: password, confirmPassword: confirmPassword}).subscribe(res => {
       console.log(res);
       this.router.navigate(['login']);
     }, (error)=>{

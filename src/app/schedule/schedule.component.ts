@@ -22,12 +22,6 @@ export class ScheduleComponent implements OnInit{
   ngOnInit(){
     this.datesToShow = this.getWeekDays();
     this.datesToShow.shift();
-    if(localStorage.getItem('washndrySelectedDate')){
-    this.dataService.selectedDate = localStorage.getItem('washndrySelectedDate') as string;
-    }
-    if(localStorage.getItem('washndrySelectedTimeSlot')){
-     this.dataService.selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot') as string; 
-    }
   }
 
   getWeekDays() {
