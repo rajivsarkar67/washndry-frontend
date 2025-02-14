@@ -28,19 +28,13 @@
                 <label for="city">City</label>
                 <input type="text" id="city" placeholder="Enter city name" #city>
             </div>
-        </div>
-        <div class="line">
             <div class="form-field">
                 <label for="state">State</label>
                 <input type="text" id="state" placeholder="Enter state name" #state>
             </div>
-            <div class="form-field">
-                <label for="country">Country</label>
-                <input type="text" id="country" placeholder="Enter country name" #country>
-            </div>
         </div>
     </form>
     <app-total-amount-section [btnLabel]="'Complete Order'" [btnDisabled]="dataService.totalPrice ? false: true" 
-        (emitNavigate)="navigateToNextPage(firstName.value, lastName.value, emailId.value, fullAddress.value, pincode.value, city.value, state.value, country.value)">
+        (emitNavigate)="navigateToNextPage(firstName.value, lastName.value, emailId.value, fullAddress.value, pincode.value, city.value, state.value)">
     </app-total-amount-section>
 </div>

@@ -28,6 +28,9 @@ export class HeaderComponent {
 
   logout(){
     localStorage.setItem('washndryIsLoggedIn', 'false');
+    localStorage.removeItem('washndrySelection');
+    localStorage.removeItem('washndrySelectedDate');
+    localStorage.removeItem('washndrySelectedTimeSlot');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }
