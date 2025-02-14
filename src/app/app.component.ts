@@ -19,6 +19,9 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    if(localStorage.getItem('washndryAuthToken')){
+      this.dataService.authToken = localStorage.getItem('washndryAuthToken') as string;
+    }
     if(localStorage.getItem('washndrySelection')){
       this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
     }

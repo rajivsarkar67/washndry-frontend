@@ -30,7 +30,8 @@ export class AddressComponent {
       let selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
       let [firstname, lastname, emailId, fullAddress, pincode, city, state, country] = formValues;
       let address = {firstname, lastname, emailId, fullAddress, pincode, city, state};
-      this.http.post('http://localhost:5000/api/create',{selectedItems, selectedDate, selectedTimeSlot, address}).subscribe(res => {
+      const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
+      this.http.post('http://localhost:5000/api/create',{selectedItems, selectedDate, selectedTimeSlot, address}, {headers}).subscribe(res => {
         console.log(res);
         this.router.navigate(['orders-list']);
       }, (error)=>{

@@ -23,9 +23,10 @@ export class LoginComponent {
       alert('Email or Password cannot be empty!');
       return;
     }
-    this.http.post('http://localhost:5000/api/login', {phoneNumber: email, password: password}).subscribe(res => {
+    this.http.post('http://localhost:5000/api/login', {phoneNumber: email, password: password}).subscribe((res:any) => {
       console.log(res);
-      localStorage.setItem('washndryIsLoggedIn', 'true');
+      this.dataService.authToken = res.token;
+      localStorage.setItem('washndryAuthToken', this.dataService.authToken);
       this.router.navigate(['selection']);
     }, (error)=> {
       alert(error.error.message);
