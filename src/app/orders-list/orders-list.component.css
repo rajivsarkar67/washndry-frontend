@@ -23,7 +23,7 @@
 .orders-list-container .order .order-details{
     width: 90%;
     vertical-align: middle;
-    display: inline-flex;
+    display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -42,5 +42,12 @@
     }
     .orders-list-container .order .order-details div{
         margin: 1rem 0;
+        flex: 1 0 48%;
+    }
+}
+
+@media screen and (min-width: 550.1px) and (max-width: 750px){
+    .orders-list-container .order .order-details div{
+        flex: 1 0 31.5%;
     }
 }

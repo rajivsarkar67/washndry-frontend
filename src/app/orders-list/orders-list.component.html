@@ -1,42 +1,20 @@
 <app-header></app-header>
 <article class="orders-list-container">
-    <h2>Ongoing Orders</h2>
-    @for(order of dataService.ongoingOrdersList; track order.id){
+    <h2>My Orders</h2>
+    @for(order of dataService.ordersList; track order.id){
         <div class="order">
-            <div class="image-container">
-                <img src="ongoing.png">
-            </div>
             <div class="order-details">
                 <div>
                     <p><strong>Order Date</strong></p>
                     <p>{{order.orderDate}}</p>
+                </div>
+                <div>
+                    <p><strong>Status</strong></p>
+                    <p>{{order.status}}</p>
                 </div>
                 <div>
                     <p><strong>Pickup Date</strong></p>
                     <p>{{order.pickupDate}}</p>
-                </div>
-                <div>
-                    <p><strong>Total Item</strong></p>
-                    <p>{{order.totalItem}}</p>
-                </div>
-                <div>
-                    <p><strong>Total Amount</strong></p>
-                    <p>{{order.totalAmount}}</p>
-                </div>
-            </div>
-        </div>
-    }
-
-    <h2>Past Orders</h2>
-    @for(order of dataService.pastOrdersList; track order.id){
-        <div class="order">
-            <div class="image-container">
-                <img src="completed.png">
-            </div>
-            <div class="order-details">
-                <div>
-                    <p><strong>Order Date</strong></p>
-                    <p>{{order.orderDate}}</p>
                 </div>
                 <div>
                     <p><strong>Delivery Date</strong></p>
