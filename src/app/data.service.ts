@@ -43,7 +43,11 @@ export class DataService {
   emptyItemsList(){
     this.itemsList.map(el => {
       el.quantity = 0;
-    })
+    });
+    this.totalItems = 0;
+    this.totalPrice = 0;
+    this.selectedDate = '';
+    this.selectedTimeSlot = '';
   }
 
 }
