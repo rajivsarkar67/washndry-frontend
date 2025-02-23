@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-orders-list',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, DatePipe],
   templateUrl: './orders-list.component.html',
   styleUrl: './orders-list.component.css'
 })
@@ -15,10 +16,17 @@ export class OrdersListComponent {
 
   constructor(private router: Router, public dataService: DataService, private http: HttpClient){}
 
+  ordersList: any = [];
+
   ngOnInit(){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    this.http.get('http://localhost:5000/api/orders', {headers}).subscribe(res => {
-      console.log(res);
+    this.http.get('http://localhost:5000/api/orders', {headers}).subscribe((res:any) => {
+      this.ordersList = res.orders;
+      console.log(this.ordersList);
+      console.log(this.ordersList[0].createdAt);
+      console.log(this.ordersList[0].status);
+      console.log(this.ordersList[0].selectedDate);
+      console.log(this.ordersList[0].deliveryDate);
     }, (error)=>{
       alert(error.error.message);
     });

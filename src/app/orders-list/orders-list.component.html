@@ -1,33 +1,31 @@
 <app-header></app-header>
 <article class="orders-list-container">
     <h2>My Orders</h2>
-    @for(order of dataService.ordersList; track order.id){
-        <div class="order">
-            <div class="order-details">
-                <div>
-                    <p><strong>Order Date</strong></p>
-                    <p>{{order.orderDate}}</p>
-                </div>
-                <div>
-                    <p><strong>Status</strong></p>
-                    <p>{{order.status}}</p>
-                </div>
-                <div>
-                    <p><strong>Pickup Date</strong></p>
-                    <p>{{order.pickupDate}}</p>
-                </div>
-                <div>
-                    <p><strong>Delivery Date</strong></p>
-                    <p>{{order.deliveryDate}}</p>
-                </div>
-                <div>
-                    <p><strong>Total Item</strong></p>
-                    <p>{{order.totalItem}}</p>
-                </div>
-                <div>
-                    <p><strong>Total Amount</strong></p>
-                    <p>{{order.totalAmount}}</p>
-                </div>
+    @for(order of ordersList; track order._id){
+        <div class="order-details">
+            <div>
+                <p><strong>Order Date</strong></p>
+                <p>{{order.createdAt | date: 'dd MMM, yyyy'}}</p>
+            </div>
+            <div>
+                <p><strong>Status</strong></p>
+                <p>{{order.status}}</p>
+            </div>
+            <div>
+                <p><strong>Pickup Date</strong></p>
+                <p>{{order.selectedDate}}</p>
+            </div>
+            <div>
+                <p><strong>Delivery Date</strong></p>
+                <p>{{order.deliveryDate | date: 'dd MMM, yyyy'}}</p>
+            </div>
+            <div>
+                <p><strong>Total Item</strong></p>
+                <p>8</p>
+            </div>
+            <div>
+                <p><strong>Total Amount</strong></p>
+                <p>125</p>
             </div>
         </div>
     }
