@@ -29,7 +29,6 @@ export class LoginComponent {
       return;
     }
     this.http.post('http://localhost:5000/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
-      console.log(res);
       this.dataService.authToken = res.token;
       localStorage.setItem('washndryAuthToken', this.dataService.authToken);
       this.router.navigate(['selection']);
