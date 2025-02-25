@@ -2,6 +2,11 @@
     padding: 2rem;
 }
 
+.orders-list-container .cancel-order-button{
+    top: 50px;
+    position: relative;
+}
+
 .orders-list-container .order-details{
     margin: 1rem;
     background-color: #d8d8d8;

@@ -35,6 +35,12 @@ export class OrdersListComponent {
     return totalItems;
   }
 
+  cancelOrder(id: string){
+    console.log(id);
+    let status = confirm('Are you sure you want to cancel this order?');
+    console.log(status);
+  }
+
   goToSelection(){
     this.router.navigate(['selection']);
   }
