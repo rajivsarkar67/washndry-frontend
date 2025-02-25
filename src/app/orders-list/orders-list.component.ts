@@ -22,14 +22,17 @@ export class OrdersListComponent {
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     this.http.get('http://localhost:5000/api/orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
-      console.log(this.ordersList);
-      console.log(this.ordersList[0].createdAt);
-      console.log(this.ordersList[0].status);
-      console.log(this.ordersList[0].selectedDate);
-      console.log(this.ordersList[0].deliveryDate);
     }, (error)=>{
       alert(error.error.message);
     });
+  }
+  
+  getTotalItems(order: any){
+    let totalItems = 0;
+    order.selectedItems.forEach((orderItem:any) => {
+      totalItems = totalItems + orderItem.quantity;
+    })
+    return totalItems;
   }
 
   goToSelection(){

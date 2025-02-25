@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div class="selection-page-container">
+    <a [routerLink]="['/orders-list']">Go To Orders</a>
     <div class="items-list">
         @for(item of dataService.itemsList; track item.name){
             <div class="item">

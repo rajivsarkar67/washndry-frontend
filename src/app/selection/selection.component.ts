@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { TotalAmountSectionComponent } from '../total-amount-section/total-amount-section.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-selection',
   standalone: true,
-  imports: [TotalAmountSectionComponent, HeaderComponent],
+  imports: [TotalAmountSectionComponent, HeaderComponent, RouterLink],
   templateUrl: './selection.component.html',
   styleUrl: './selection.component.css'
 })
