@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,13 +12,15 @@ import { RouterLink } from '@angular/router';
 })
 export class ForgotPasswordComponent {
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private validationService: ValidationService){}
 
   isPhoneNumberChecked: boolean = false;
 
   verifyPhoneNumber(phoneNumber: number){
-    console.log(phoneNumber);
-    console.log(typeof(phoneNumber));
+    if(!this.validationService.checkPhoneNumber(phoneNumber)){
+      alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
+      return;
+    }
     this.isPhoneNumberChecked = true;
   }
 
