@@ -18,6 +18,6 @@
         <input id="confirmPassword" type="password" placeholder="Confirm Password" #confirmPassword>
         <br>
     </div>
-    <button class="primary-button" (click)="goToLogin(phone.value, password.value, confirmPassword.value)">Signup</button>
+    <button class="primary-button" (click)="goToLogin(+phone.value, password.value, confirmPassword.value)">Signup</button>
     <a [routerLink]="['/login']">Already have an account? Go to Login</a>
 </div>

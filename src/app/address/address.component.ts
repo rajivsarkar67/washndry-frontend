@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-address',
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './address.component.css'
 })
 export class AddressComponent {
-  constructor(private router: Router, public dataService: DataService, private http: HttpClient){}
+  constructor(private router: Router, public dataService: DataService, private http: HttpClient, private validationService: ValidationService){}
   
   navigateToNextPage(...formValues: any[]){
     let isFormInvalid = formValues.some(value => {
@@ -23,16 +24,19 @@ export class AddressComponent {
       alert('All values must be filled');
       return;
     }
+    else if(!this.validationService.checkPincode(formValues[4])){
+      alert('Pincode must be 6 digits');
+      return;
+    }
     else{
       // constructing data to be sent
       let selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
       let selectedDate = localStorage.getItem('washndrySelectedDate');
       let selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
-      let [firstname, lastname, emailId, fullAddress, pincode, city, state, country] = formValues;
+      let [firstname, lastname, emailId, fullAddress, pincode, city, state] = formValues;
       let address = {firstname, lastname, emailId, fullAddress, pincode, city, state};
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
       this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, address}, {headers}).subscribe(res => {
-        console.log(res);
         this.router.navigate(['orders-list']);
       }, (error)=>{
         alert(error.error.message);
