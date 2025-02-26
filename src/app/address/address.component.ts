@@ -33,8 +33,8 @@ export class AddressComponent {
       let selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
       let selectedDate = localStorage.getItem('washndrySelectedDate');
       let selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
-      let [fullName, fullAddress, pincode, city, state] = formValues;
-      let address = {fullName, fullAddress, pincode, city, state};
+      let [name, fullAddress, pincode, city, state] = formValues;
+      let address = {name, fullAddress, pincode, city, state};
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
       this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, address}, {headers}).subscribe(res => {
         this.router.navigate(['orders-list']);

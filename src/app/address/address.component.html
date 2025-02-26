@@ -2,8 +2,8 @@
 <div class="address-page-container">
     <form class="address-form">
         <div class="form-field">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="Enter full name" #fullName>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter full name" #name>
         </div>
         <div class="form-field">
             <label for="address">Address</label>
@@ -25,6 +25,6 @@
         </div>
     </form>
     <app-total-amount-section [btnLabel]="'Complete Order'" [btnDisabled]="dataService.totalPrice ? false: true" 
-        (emitNavigate)="navigateToNextPage(fullName.value, fullAddress.value, pincode.value, city.value, state.value)">
+        (emitNavigate)="navigateToNextPage(name.value, fullAddress.value, pincode.value, city.value, state.value)">
     </app-total-amount-section>
 </div>
