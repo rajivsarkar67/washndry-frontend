@@ -1,19 +1,9 @@
 <app-header></app-header>
 <div class="address-page-container">
     <form class="address-form">
-        <div class="line">
-            <div class="form-field">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" placeholder="Enter first name" #firstName>
-            </div>
-            <div class="form-field">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" placeholder="Enter last name" #lastName>
-            </div>
-            <div class="form-field">
-                <label for="email-id">Email ID</label>
-                <input type="email" id="email-id" placeholder="Enter email id" #emailId>
-            </div>
+        <div class="form-field">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter full name" #fullName>
         </div>
         <div class="form-field">
             <label for="address">Address</label>
@@ -35,6 +25,6 @@
         </div>
     </form>
     <app-total-amount-section [btnLabel]="'Complete Order'" [btnDisabled]="dataService.totalPrice ? false: true" 
-        (emitNavigate)="navigateToNextPage(firstName.value, lastName.value, emailId.value, fullAddress.value, pincode.value, city.value, state.value)">
+        (emitNavigate)="navigateToNextPage(fullName.value, fullAddress.value, pincode.value, city.value, state.value)">
     </app-total-amount-section>
 </div>

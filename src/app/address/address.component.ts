@@ -24,7 +24,7 @@ export class AddressComponent {
       alert('All values must be filled');
       return;
     }
-    else if(!this.validationService.checkPincode(formValues[4])){
+    else if(!this.validationService.checkPincode(formValues[2])){   //taking out the pincode
       alert('Pincode must be 6 digits');
       return;
     }
@@ -33,8 +33,8 @@ export class AddressComponent {
       let selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
       let selectedDate = localStorage.getItem('washndrySelectedDate');
       let selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
-      let [firstname, lastname, emailId, fullAddress, pincode, city, state] = formValues;
-      let address = {firstname, lastname, emailId, fullAddress, pincode, city, state};
+      let [fullName, fullAddress, pincode, city, state] = formValues;
+      let address = {fullName, fullAddress, pincode, city, state};
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
       this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, address}, {headers}).subscribe(res => {
         this.router.navigate(['orders-list']);
