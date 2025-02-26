@@ -37,6 +37,10 @@ export class AddressComponent {
       let address = {name, fullAddress, pincode, city, state};
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
       this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, totalItems: this.dataService.totalItems, totalAmount: this.dataService.totalPrice, address}, {headers}).subscribe(res => {
+        localStorage.removeItem('washndrySelection');
+        localStorage.removeItem('washndrySelectedDate');
+        localStorage.removeItem('washndrySelectedTimeSlot');
+        this.dataService.emptyItemsList();
         this.router.navigate(['orders-list']);
       }, (error)=>{
         alert(error.error.message);
