@@ -26,14 +26,6 @@ export class OrdersListComponent {
       alert(error.error.message);
     });
   }
-  
-  getTotalItems(order: any){
-    let totalItems = 0;
-    order.selectedItems.forEach((orderItem:any) => {
-      totalItems = totalItems + orderItem.quantity;
-    })
-    return totalItems;
-  }
 
   cancelOrder(id: string){
     let status = confirm('Are you sure you want to cancel this order?');
