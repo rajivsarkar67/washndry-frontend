@@ -36,7 +36,7 @@ export class AddressComponent {
       let [name, fullAddress, pincode, city, state] = formValues;
       let address = {name, fullAddress, pincode, city, state};
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-      this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, address}, {headers}).subscribe(res => {
+      this.http.post('http://localhost:5000/api/orders',{selectedItems, selectedDate, selectedTimeSlot, totalItems: this.dataService.totalItems, totalAmount: this.dataService.totalPrice, address}, {headers}).subscribe(res => {
         this.router.navigate(['orders-list']);
       }, (error)=>{
         alert(error.error.message);

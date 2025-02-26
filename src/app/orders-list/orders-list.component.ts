@@ -36,9 +36,16 @@ export class OrdersListComponent {
   }
 
   cancelOrder(id: string){
-    console.log(id);
     let status = confirm('Are you sure you want to cancel this order?');
-    console.log(status);
+    if(status){
+      const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
+      this.http.delete(`http://localhost:5000/api/orders/delete/${id}`, {headers}).subscribe((res:any) => {
+        console.log(res);
+        this.ngOnInit();
+      }, (error)=>{
+        alert(error.error.message);
+      });
+    }
   }
 
   goToSelection(){
