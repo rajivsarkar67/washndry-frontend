@@ -23,8 +23,8 @@ export class SignupComponent {
       alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
       return;
     }
-    this.http.post('http://localhost:5000/api/signup',{phoneNumber: phone, password: password, confirmPassword: confirmPassword}).subscribe(res => {
-      console.log(res);
+    const type = this.router.url === '/admin-signup'? 'admin' : 'user';
+    this.http.post('http://localhost:5000/api/signup',{phoneNumber: phone, password: password, confirmPassword: confirmPassword, type}).subscribe(res => {
       this.router.navigate(['login']);
     }, (error)=>{
       alert(error.error.message);
