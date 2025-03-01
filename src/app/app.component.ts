@@ -22,6 +22,9 @@ export class AppComponent {
     if(localStorage.getItem('washndryAuthToken')){
       this.dataService.authToken = localStorage.getItem('washndryAuthToken') as string;
     }
+    if(localStorage.getItem('washndryUserType')){
+      this.dataService.userType = localStorage.getItem('washndryUserType') as string;
+    }
     if(localStorage.getItem('washndrySelection')){
       this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
     }

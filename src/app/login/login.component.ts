@@ -30,8 +30,15 @@ export class LoginComponent {
     }
     this.http.post('http://localhost:5000/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
       this.dataService.authToken = res.token;
+      this.dataService.userType = res.type;
       localStorage.setItem('washndryAuthToken', this.dataService.authToken);
-      this.router.navigate(['selection']);
+      localStorage.setItem('washndryUserType', this.dataService.userType);
+      if(this.dataService.userType === 'user'){
+        this.router.navigate(['selection']);
+      }
+      else if(this.dataService.userType === 'admin'){
+        this.router.navigate(['admin-panel']);
+      }
     }, (error)=> {
       alert(error.error.message);
     })

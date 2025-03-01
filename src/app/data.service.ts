@@ -8,6 +8,7 @@ export class DataService {
   constructor() { }
 
   authToken = '';
+  userType = '';
 
   itemsList = [
     {name: 'T-shirt', cost: 15, snapshot: 'tshirt.png', quantity: 0},

@@ -28,6 +28,7 @@ export class HeaderComponent {
 
   logout(){
     localStorage.removeItem('washndryAuthToken');
+    localStorage.removeItem('washndryUserType');
     localStorage.removeItem('washndrySelection');
     localStorage.removeItem('washndrySelectedDate');
     localStorage.removeItem('washndrySelectedTimeSlot');
