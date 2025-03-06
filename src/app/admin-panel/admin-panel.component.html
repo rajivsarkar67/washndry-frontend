@@ -1,1 +1,48 @@
 <app-header></app-header>
+<article class="orders-list-container">
+    <h2>My Orders</h2>
+    @for(order of ordersList; track order.orderId; let i = $index;){
+        <div class="order-details">
+            <div>
+                <p><strong>Order ID</strong></p>
+                <p>{{order.orderId}}</p>
+            </div>
+            <div>
+                <p><strong>Name</strong></p>
+                <p>{{order.customerName}}</p>
+            </div>
+            <div>
+                <p><strong>Order Date</strong></p>
+                <p>{{order.createdAt | date: 'dd MMM, yyyy'}}</p>
+            </div>
+            <div>
+                <p><strong>Status</strong></p>
+                <select [(ngModel)]="order.status" (change)="ordersList[i].isAnythingChanged = true;">
+                    @for(status of statuses; track status){
+                        <option [value]="status">{{status}}</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <p><strong>Pickup Date</strong></p>
+                <p>{{order.selectedDate}}</p>
+            </div>
+            <div>
+                <p><strong>Delivery Date</strong></p>
+                <p>{{order.deliveryDate | date: 'dd MMM, yyyy'}}</p>
+            </div>
+            <div>
+                <p><strong>Total Item</strong></p>
+                <p>{{order.totalItems}}</p>
+            </div>
+            <div>
+                <p><strong>Total Amount</strong></p>
+                <p>{{order.totalAmount}}</p>
+            </div>
+            @if(order.isAnythingChanged){
+                <button>Cancel</button>
+                <button class="primary-button">Save</button>
+            }
+        </div>
+    }
+</article>
