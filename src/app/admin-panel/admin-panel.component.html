@@ -5,11 +5,11 @@
         <div class="order-details">
             <div>
                 <p><strong>Order ID</strong></p>
-                <p>{{order.orderId}}</p>
+                <p>{{order._id}}</p>
             </div>
             <div>
                 <p><strong>Name</strong></p>
-                <p>{{order.customerName}}</p>
+                <p>{{order.address.name}}</p>
             </div>
             <div>
                 <p><strong>Order Date</strong></p>
@@ -40,8 +40,8 @@
                 <p>{{order.totalAmount}}</p>
             </div>
             @if(order.isAnythingChanged){
-                <button>Cancel</button>
-                <button class="primary-button">Save</button>
+                <button (click)="cancelOrderDetails()">Cancel</button>
+                <button class="primary-button" (click)="saveOrderDetails(i)">Save</button>
             }
         </div>
     }

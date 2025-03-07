@@ -20,25 +20,36 @@ export class AdminPanelComponent {
   statuses = ['Ordered', 'Picked Up', 'Delivered'];
 
   ngOnInit(){
-    this.ordersList = [
-      {orderId: '32939ddiidsa1', customerName: 'Rajiv Sarkar', createdAt: Date.now(), status: 'Ordered', selectedDate: '30 Jun 2025', deliveryDate: '5 June 2026', totalItems: 6, totalAmount: 100},
-      {orderId: '32939ddiisa1', customerName: 'Rajiv Sarkar', createdAt: Date.now(), status: 'Picked Up', selectedDate: '30 Jun 2025', deliveryDate: '5 June 2026', totalItems: 6, totalAmount: 100},
-      {orderId: '3293ddiidsa1', customerName: 'Rajiv Sarkar', createdAt: Date.now(), status: 'Delivered', selectedDate: '30 Jun 2025', deliveryDate: '5 June 2026', totalItems: 6, totalAmount: 100},
-    ];
-    this.ordersList.forEach((el: any) => {
-      el.isAnythingChanged = false;
-    })
-    return;
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    this.http.get('http://localhost:5000/api/orders', {headers}).subscribe((res:any) => {
+    this.http.get('http://localhost:5000/api/all-orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
+      console.log(res);
+      this.ordersList.forEach((el: any) => {
+        el.isAnythingChanged = false;
+      })
     }, (error)=>{
       alert(error.error.message);
     });
   }
 
-  statusChanged(index: number){
-    console.log('statusChanged called');
+  saveOrderDetails(i: number){
+    const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
+    let pickupDate : Date;
+    let deliveryDate : Date;
+    let dataObj = {};
+    if(this.ordersList[i].status === 'Picked Up'){
+      dataObj = {_id: this.ordersList[i]._id, selectedDate: new Date()};
+    } 
+    if(this.ordersList[i].status === 'Delivered'){
+      dataObj = {_id: this.ordersList[i]._id, deliveryDate: new Date()};
+    }
+    // this.http.post('http://localhost:5000/api/edit-order', dataObj, {headers}).subscribe((res: any) => {
+
+    // })
+  }
+
+  cancelOrderDetails(){
+    window.location.reload();
   }
 
 }
