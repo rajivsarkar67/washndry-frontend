@@ -29,7 +29,7 @@ export class AppComponent {
       this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
     }
     if(localStorage.getItem('washndrySelectedDate')){
-      this.dataService.selectedDate = localStorage.getItem('washndrySelectedDate') as string;
+      this.dataService.selectedDate = localStorage.getItem('washndrySelectedDate') as any;
     }
     if(localStorage.getItem('washndrySelectedTimeSlot')){
        this.dataService.selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot') as string; 

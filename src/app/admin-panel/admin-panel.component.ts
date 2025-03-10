@@ -33,19 +33,18 @@ export class AdminPanelComponent {
   }
 
   saveOrderDetails(i: number){
+    console.log('saveOrderDetails called');
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    let pickupDate : Date;
-    let deliveryDate : Date;
     let dataObj = {};
     if(this.ordersList[i].status === 'Picked Up'){
-      dataObj = {_id: this.ordersList[i]._id, selectedDate: new Date()};
+      dataObj = {orderId: this.ordersList[i]._id, status: 'Picked Up', pickupDate: new Date()};
     } 
     if(this.ordersList[i].status === 'Delivered'){
-      dataObj = {_id: this.ordersList[i]._id, deliveryDate: new Date()};
+      dataObj = {orderId: this.ordersList[i]._id, status: 'Delivered', deliveryDate: new Date()};
     }
-    // this.http.post('http://localhost:5000/api/edit-order', dataObj, {headers}).subscribe((res: any) => {
-
-    // })
+    this.http.patch('http://localhost:5000/api/update-order', dataObj, {headers}).subscribe((res: any) => {
+      window.location.reload();
+    })
   }
 
   cancelOrderDetails(){

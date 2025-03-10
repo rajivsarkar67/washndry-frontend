@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent],
+  imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent, DatePipe],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css'
 })
@@ -34,13 +34,15 @@ export class ScheduleComponent implements OnInit{
           
           return {
               day: daysOfWeek[date.getDay()],
-              date: date.getDate() // Get only the day of the month
+              date: date // Get only the day of the month
           };
     });
   }
 
-  selectDate(date: string){
+  selectDate(date: Date){
+    console.log('selectDate called');
     this.dataService.selectedDate = date;
+    console.log(this.dataService.selectedDate);
   }
 
   selectTimeSlot(timeSlot: string){
@@ -48,7 +50,7 @@ export class ScheduleComponent implements OnInit{
   }
 
   navigateToNextPage(){
-    if(this.dataService.selectedDate === '' || this.dataService.selectedTimeSlot===''){
+    if(this.dataService.selectedDate === new Date() || this.dataService.selectedTimeSlot===''){
       alert('Please select a date and time slot first');
       return;
     }

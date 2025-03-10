@@ -4,8 +4,8 @@
         <h1>Select Date</h1>
         <div class="dates">
             @for(date of datesToShow; track date.date){
-                <div class="date" (click)="selectDate(date.date)" [ngClass]="{'selected-date':date.date===(+dataService.selectedDate)}">
-                    <p>{{date.date}}</p>
+                <div class="date" (click)="selectDate(date.date)" [ngClass]="{'selected-date':date.date===(dataService.selectedDate)}">
+                    <p>{{date.date | date: 'dd MMM, yyyy'}}</p>
                     <p>{{date.day}}</p>
                 </div>
             }

@@ -28,7 +28,7 @@ export class DataService {
   totalItems: number = 0;
   totalPrice: number = 0;
 
-  selectedDate: string = '';
+  selectedDate: Date = new Date();
   selectedTimeSlot: string = '';
 
   calculateTotalItemsAndPrice(){
@@ -47,7 +47,7 @@ export class DataService {
     });
     this.totalItems = 0;
     this.totalPrice = 0;
-    this.selectedDate = '';
+    this.selectedDate = new Date();
     this.selectedTimeSlot = '';
   }
 
