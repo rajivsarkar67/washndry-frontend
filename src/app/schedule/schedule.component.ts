@@ -40,9 +40,7 @@ export class ScheduleComponent implements OnInit{
   }
 
   selectDate(date: Date){
-    console.log('selectDate called');
     this.dataService.selectedDate = date;
-    console.log(this.dataService.selectedDate);
   }
 
   selectTimeSlot(timeSlot: string){

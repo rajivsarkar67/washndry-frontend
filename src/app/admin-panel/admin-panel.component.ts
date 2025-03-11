@@ -23,7 +23,6 @@ export class AdminPanelComponent {
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     this.http.get('http://localhost:5000/api/all-orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
-      console.log(res);
       this.ordersList.forEach((el: any) => {
         el.isAnythingChanged = false;
       })
@@ -33,7 +32,6 @@ export class AdminPanelComponent {
   }
 
   saveOrderDetails(i: number){
-    console.log('saveOrderDetails called');
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     let dataObj = {};
     if(this.ordersList[i].status === 'Picked Up'){

@@ -22,7 +22,6 @@ export class ForgotPasswordComponent {
       return;
     }
     this.http.get(`http://localhost:5000/api/check-phone?phoneNumber=${phoneNumber}`).subscribe((res:any) => {
-      console.log(res);
       if(res.exists){
         this.isPhoneNumberChecked = true;
       }
@@ -44,7 +43,6 @@ export class ForgotPasswordComponent {
       return;
     }
     this.http.post('http://localhost:5000/api/reset-password', {phoneNumber: phone, newPassword: password}).subscribe((res:any) => {
-      console.log(res);
       this.router.navigate(['login']);
     }, (error)=> {
       alert(error.error.message);

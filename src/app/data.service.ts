@@ -32,7 +32,6 @@ export class DataService {
   selectedTimeSlot: string = '';
 
   calculateTotalItemsAndPrice(){
-    console.log('calculateTotalItemsAndPrice called');
     this.totalItems = 0;
     this.totalPrice = 0;
     this.itemsList.forEach(el => {
