@@ -21,7 +21,7 @@ export class ForgotPasswordComponent {
       alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
       return;
     }
-    this.http.get(`http://localhost:5000/api/check-phone?phoneNumber=${phoneNumber}`).subscribe((res:any) => {
+    this.http.get(`https://washndry-backend.onrender.com/api/check-phone?phoneNumber=${phoneNumber}`).subscribe((res:any) => {
       if(res.exists){
         this.isPhoneNumberChecked = true;
       }
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent {
       alert('Password and Confirm Password should match');
       return;
     }
-    this.http.post('http://localhost:5000/api/reset-password', {phoneNumber: phone, newPassword: password}).subscribe((res:any) => {
+    this.http.post('https://washndry-backend.onrender.com/api/reset-password', {phoneNumber: phone, newPassword: password}).subscribe((res:any) => {
       this.router.navigate(['login']);
     }, (error)=> {
       alert(error.error.message);

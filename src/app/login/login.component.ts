@@ -28,7 +28,7 @@ export class LoginComponent {
       alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
       return;
     }
-    this.http.post('http://localhost:5000/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
+    this.http.post('https://washndry-backend.onrender.com/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
       this.dataService.authToken = res.token;
       this.dataService.userType = res.type;
       localStorage.setItem('washndryAuthToken', this.dataService.authToken);

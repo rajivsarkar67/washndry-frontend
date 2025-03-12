@@ -20,7 +20,7 @@ export class OrdersListComponent {
 
   ngOnInit(){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    this.http.get('http://localhost:5000/api/orders', {headers}).subscribe((res:any) => {
+    this.http.get('https://washndry-backend.onrender.com/api/orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
     }, (error)=>{
       alert(error.error.message);
@@ -31,7 +31,7 @@ export class OrdersListComponent {
     let status = confirm('Are you sure you want to cancel this order?');
     if(status){
       const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-      this.http.delete(`http://localhost:5000/api/orders/delete/${id}`, {headers}).subscribe((res:any) => {
+      this.http.delete(`https://washndry-backend.onrender.com/api/orders/delete/${id}`, {headers}).subscribe((res:any) => {
         this.ngOnInit();
       }, (error)=>{
         alert(error.error.message);
