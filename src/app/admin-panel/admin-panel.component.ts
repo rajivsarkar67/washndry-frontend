@@ -17,7 +17,7 @@ export class AdminPanelComponent {
   constructor(private http: HttpClient, private dataService: DataService){}
 
   ordersList: any = [];
-  statuses = ['Ordered', 'Picked Up', 'Delivered'];
+  statuses = ['Ordered', 'Order Confirmed', 'Picked Up', 'Delivered'];
 
   ngOnInit(){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
@@ -34,6 +34,9 @@ export class AdminPanelComponent {
   saveOrderDetails(i: number){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     let dataObj = {};
+    if(this.ordersList[i].status === 'Order Confirmed'){
+      dataObj = {orderId: this.ordersList[i]._id, status: 'Order Confirmed'};
+    }
     if(this.ordersList[i].status === 'Picked Up'){
       dataObj = {orderId: this.ordersList[i]._id, status: 'Picked Up', pickupDate: new Date()};
     } 

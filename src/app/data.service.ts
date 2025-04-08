@@ -11,12 +11,11 @@ export class DataService {
   userType = '';
 
   itemsList = [
-    {name: 'T-shirt', cost: 15, snapshot: 'tshirt.png', quantity: 0},
-    {name: 'Shirt', cost: 20, snapshot: 'shirt.png', quantity: 0},
-    {name: 'Jeans/Pant', cost: 30, snapshot: 'pant.png', quantity: 0},
-    {name: 'Saree', cost: 50, snapshot: 'saree.png', quantity: 0},
-    {name: 'Sweater', cost: 30, snapshot: 'sweater.png', quantity: 0},
-    {name: 'Undergarment', cost: 10, snapshot: 'undergarment.png', quantity: 0},
+    {name: 'T-shirt', cost: 20, snapshot: 'tshirt.png', quantity: 0},
+    {name: 'Half Pant', cost: 20, snapshot: 'tshirt.png', quantity: 0},
+    {name: 'Shirt', cost: 35, snapshot: 'shirt.png', quantity: 0},
+    {name: 'Full Pant', cost: 40, snapshot: 'pant.png', quantity: 0},
+    {name: 'Jeans', cost: 50, snapshot: 'pant.png', quantity: 0}
   ];
   
   ordersList = [
