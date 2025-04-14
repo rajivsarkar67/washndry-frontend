@@ -12,10 +12,10 @@ export class DataService {
 
   itemsList = [
     {name: 'T-shirt', cost: 20, snapshot: 'tshirt.png', quantity: 0},
-    {name: 'Half Pant', cost: 20, snapshot: 'tshirt.png', quantity: 0},
+    {name: 'Half Pant', cost: 20, snapshot: 'half_pant.png', quantity: 0},
     {name: 'Shirt', cost: 35, snapshot: 'shirt.png', quantity: 0},
-    {name: 'Full Pant', cost: 40, snapshot: 'pant.png', quantity: 0},
-    {name: 'Jeans', cost: 50, snapshot: 'pant.png', quantity: 0}
+    {name: 'Full Pant', cost: 40, snapshot: 'full_pant.png', quantity: 0},
+    {name: 'Jeans', cost: 50, snapshot: 'jeans.png', quantity: 0}
   ];
   
   ordersList = [

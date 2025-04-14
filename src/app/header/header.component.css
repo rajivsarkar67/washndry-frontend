@@ -4,3 +4,8 @@
     background-color: palegreen;
     padding: 0.5rem;
 }
+
+.top-bar img{
+    height: 2rem;
+    margin-top: 0.4rem;
+}
