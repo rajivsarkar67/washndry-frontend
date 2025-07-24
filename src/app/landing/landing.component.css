@@ -3,10 +3,17 @@
     padding: 2rem;
 }
 
+.landing-page .banner{
+    text-align: center;
+    background-color: palegreen;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
 .landing-page .main-section{
     display: flex;
     padding: 0.5rem;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
 }
 
 .landing-page .main-section .demo-image{
