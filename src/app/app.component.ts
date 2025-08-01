@@ -10,7 +10,7 @@ import { DataService } from './data.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(private dataService: DataService){}
+  constructor(public dataService: DataService){}
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event: BeforeUnloadEvent): void {

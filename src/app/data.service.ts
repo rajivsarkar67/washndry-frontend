@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ export class DataService {
 
   authToken = '';
   userType = '';
+  loaderState = signal(false);
 
   itemsList = [
     {name: 'T-shirt', cost: 20, snapshot: 'tshirt.png', quantity: 0},
