@@ -15,13 +15,17 @@ import { DataService } from '../data.service';
 export class ScheduleComponent implements OnInit{
 
   datesToShow: any = [];
-  timeSlots=['8am-10am','10am-12pm','12pm-2pm','2pm-4pm','4pm-6pm','6pm-8pm'];
+  // timeSlots=['7am-10am','10am-1pm','1pm-4pm','4pm-7pm','7pm-10pm'];
+  timeSlots=['7pm-10pm'];
+
 
   constructor(private router: Router, public dataService: DataService){}
 
   ngOnInit(){
     this.datesToShow = this.getWeekDays();
     this.datesToShow.shift();
+    this.dataService.selectedDate = undefined;
+    this.selectTimeSlot('7pm-10pm');    // current functionality for default selection of the only time slot
   }
 
   getWeekDays() {
@@ -48,7 +52,11 @@ export class ScheduleComponent implements OnInit{
   }
 
   navigateToNextPage(){
-    if(this.dataService.selectedDate === new Date() || this.dataService.selectedTimeSlot===''){
+    console.log("navigateToNextPage called");
+    console.log(this.dataService.selectedDate);
+    console.log(new Date());
+    console.log(this.dataService.selectedDate === new Date());
+    if(this.dataService.selectedDate === undefined || this.dataService.selectedTimeSlot===''){
       alert('Please select a date and time slot first');
       return;
     }

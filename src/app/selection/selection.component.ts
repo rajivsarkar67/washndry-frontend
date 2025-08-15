@@ -16,8 +16,8 @@ export class SelectionComponent {
   constructor(private router: Router, public dataService: DataService){}
 
   navigateToNextPage(){
-    if(this.dataService.totalPrice < 200){
-      alert('The minimum order value is 200 rupees');
+    if(this.dataService.totalPrice < 300){
+      alert('The minimum order value is 300 rupees');
       return;
     }
     localStorage.setItem('washndrySelection', JSON.stringify(this.dataService.itemsList));

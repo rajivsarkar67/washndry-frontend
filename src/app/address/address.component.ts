@@ -29,6 +29,7 @@ export class AddressComponent {
       return;
     }
     else{
+      alert("You will be sent confirmation on whatsapp if your order is accepted.");
       // constructing data to be sent
       let selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
       let selectedDate = localStorage.getItem('washndrySelectedDate');

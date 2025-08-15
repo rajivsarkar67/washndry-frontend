@@ -10,7 +10,7 @@
                 </div>
             }
         </div>
-        <h1>Select Time Slot</h1>
+        <h1>Pickup Time Slot</h1>
         <div class="time-slots">
             @for(timeSlot of timeSlots; track timeSlot){
                 <p class="time-slot" (click)="selectTimeSlot(timeSlot)" [ngClass]="{'selected-time-slot':timeSlot===dataService.selectedTimeSlot}">{{timeSlot}}</p>

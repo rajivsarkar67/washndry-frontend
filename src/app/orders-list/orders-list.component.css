@@ -8,7 +8,7 @@
 }
 
 .orders-list-container .order-details{
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 0;
     background-color: #d8d8d8;
     padding: 1rem;
     border-radius: 1rem;
