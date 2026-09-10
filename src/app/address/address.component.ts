@@ -15,6 +15,29 @@ import { ValidationService } from '../validation.service';
 })
 export class AddressComponent {
   constructor(private router: Router, public dataService: DataService, private http: HttpClient, private validationService: ValidationService){}
+
+  private getAuthHeaders() {
+    const token = this.dataService.authToken || localStorage.getItem('washndryAuthToken') || '';
+    this.dataService.authToken = token;
+    return { 'Authorization': 'Bearer ' + token };
+  }
+
+  private buildOrderPayload(formValues: any[]) {
+    const selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
+    const selectedDate = localStorage.getItem('washndrySelectedDate');
+    const selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
+    const [name, fullAddress, pincode, city, state] = formValues;
+    const address = {name, fullAddress, pincode, city, state};
+
+    return {
+      selectedItems,
+      selectedDate,
+      selectedTimeSlot,
+      totalItems: this.dataService.totalItems,
+      totalAmount: this.dataService.totalPrice,
+      address,
+    };
+  }
   
   navigateToNextPage(...formValues: any[]){
     let isFormInvalid = formValues.some(value => {
@@ -29,18 +52,22 @@ export class AddressComponent {
       return;
     }
     else{
+      const token = this.dataService.authToken || localStorage.getItem('washndryAuthToken');
+      if (!token) {
+        const pendingOrder = this.buildOrderPayload(formValues);
+        localStorage.setItem('washndryPendingOrder', JSON.stringify(pendingOrder));
+        this.router.navigate(['login'], { queryParams: { returnUrl: '/address' } });
+        return;
+      }
+
       alert("You will be sent confirmation on whatsapp if your order is accepted.");
-      // constructing data to be sent
-      let selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
-      let selectedDate = localStorage.getItem('washndrySelectedDate');
-      let selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
-      let [name, fullAddress, pincode, city, state] = formValues;
-      let address = {name, fullAddress, pincode, city, state};
-      const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-      this.http.post('https://washndry-backend.onrender.com/api/orders',{selectedItems, selectedDate, selectedTimeSlot, totalItems: this.dataService.totalItems, totalAmount: this.dataService.totalPrice, address}, {headers}).subscribe(res => {
+      const payload = this.buildOrderPayload(formValues);
+      const headers = this.getAuthHeaders();
+      this.http.post('http://localhost:5001/api/orders', payload, {headers}).subscribe(res => {
         localStorage.removeItem('washndrySelection');
         localStorage.removeItem('washndrySelectedDate');
         localStorage.removeItem('washndrySelectedTimeSlot');
+        localStorage.removeItem('washndryPendingOrder');
         this.dataService.emptyItemsList();
         this.router.navigate(['orders-list']);
       }, (error)=>{

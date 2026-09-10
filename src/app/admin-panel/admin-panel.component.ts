@@ -21,7 +21,7 @@ export class AdminPanelComponent {
 
   ngOnInit(){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    this.http.get('https://washndry-backend.onrender.com/api/all-orders', {headers}).subscribe((res:any) => {
+    this.http.get('http://localhost:5001/api/all-orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
       this.ordersList.forEach((el: any) => {
         el.isAnythingChanged = false;
@@ -43,7 +43,7 @@ export class AdminPanelComponent {
     if(this.ordersList[i].status === 'Delivered'){
       dataObj = {orderId: this.ordersList[i]._id, status: 'Delivered', deliveryDate: new Date()};
     }
-    this.http.patch('https://washndry-backend.onrender.com/api/update-order', dataObj, {headers}).subscribe((res: any) => {
+    this.http.patch('http://localhost:5001/api/update-order', dataObj, {headers}).subscribe((res: any) => {
       window.location.reload();
     })
   }

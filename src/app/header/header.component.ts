@@ -14,7 +14,7 @@ export class HeaderComponent {
   washndryIsLoggedIn: boolean = false;
 
   constructor(private router: Router, public dataService: DataService){
-    if(localStorage.getItem('washndryAuthToken')){
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('washndryAuthToken')) {
       this.washndryIsLoggedIn = true;
     }
     else{
@@ -32,6 +32,7 @@ export class HeaderComponent {
     localStorage.removeItem('washndrySelection');
     localStorage.removeItem('washndrySelectedDate');
     localStorage.removeItem('washndrySelectedTimeSlot');
+    localStorage.removeItem('washndryPendingOrder');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }

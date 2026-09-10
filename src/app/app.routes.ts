@@ -14,9 +14,9 @@ import { isAdminGuard } from './is-admin.guard';
 
 export const routes: Routes = [
     {path: '', component: LandingComponent},
-    {path: 'selection', component: SelectionComponent, canActivate: [authGuard, isUserGuard]},
-    {path: 'schedule', component: ScheduleComponent, canActivate: [authGuard, isUserGuard]},
-    {path: 'address', component: AddressComponent, canActivate: [authGuard, isUserGuard]},
+    {path: 'selection', component: SelectionComponent},
+    {path: 'schedule', component: ScheduleComponent},
+    {path: 'address', component: AddressComponent},
     {path: 'orders-list', component: OrdersListComponent, canActivate: [authGuard, isUserGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},

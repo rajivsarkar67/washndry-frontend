@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,13 @@ import { ValidationService } from '../validation.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router: Router, private dataService: DataService, private http: HttpClient, private validationService: ValidationService){}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dataService: DataService,
+    private http: HttpClient,
+    private validationService: ValidationService
+  ){}
 
   isGetOtpClicked: boolean = false;
   hasReceivedOtp: boolean = false;
@@ -28,16 +34,38 @@ export class LoginComponent {
       alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
       return;
     }
-    this.http.post('https://washndry-backend.onrender.com/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
+    this.http.post('http://localhost:5001/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
       this.dataService.authToken = res.token;
       this.dataService.userType = res.type;
       localStorage.setItem('washndryAuthToken', this.dataService.authToken);
       localStorage.setItem('washndryUserType', this.dataService.userType);
+
+      const pendingOrder = localStorage.getItem('washndryPendingOrder');
+      if (this.dataService.userType === 'user' && pendingOrder) {
+        const payload = JSON.parse(pendingOrder);
+        const headers = { 'Authorization': 'Bearer ' + this.dataService.authToken };
+
+        this.http.post('http://localhost:5001/api/orders', payload, { headers }).subscribe((orderRes:any) => {
+          localStorage.removeItem('washndrySelection');
+          localStorage.removeItem('washndrySelectedDate');
+          localStorage.removeItem('washndrySelectedTimeSlot');
+          localStorage.removeItem('washndryPendingOrder');
+          this.dataService.emptyItemsList();
+          this.router.navigate(['orders-list']);
+        }, (error)=> {
+          alert(error.error.message || 'Unable to place order. Please try again.');
+        });
+        return;
+      }
+
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || (this.dataService.userType === 'admin' ? '/admin-panel' : '/selection');
+      const normalizedReturnUrl = returnUrl.startsWith('/') ? returnUrl : `/${returnUrl}`;
+
       if(this.dataService.userType === 'user'){
-        this.router.navigate(['selection']);
+        this.router.navigateByUrl(normalizedReturnUrl);
       }
       else if(this.dataService.userType === 'admin'){
-        this.router.navigate(['admin-panel']);
+        this.router.navigateByUrl('/admin-panel');
       }
     }, (error)=> {
       alert(error.error.message);

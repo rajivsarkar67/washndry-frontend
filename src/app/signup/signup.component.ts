@@ -24,7 +24,7 @@ export class SignupComponent {
       return;
     }
     const type = this.router.url === '/admin-signup'? 'admin' : 'user';
-    this.http.post('https://washndry-backend.onrender.com/api/signup',{phoneNumber: phone, password: password, confirmPassword: confirmPassword, type}).subscribe(res => {
+    this.http.post('http://localhost:5001/api/signup',{phoneNumber: phone, password: password, confirmPassword: confirmPassword, type}).subscribe(res => {
       this.router.navigate(['login']);
     }, (error)=>{
       alert(error.error.message);
