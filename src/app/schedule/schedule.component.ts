@@ -16,7 +16,7 @@ export class ScheduleComponent implements OnInit{
 
   datesToShow: any = [];
   // timeSlots=['7am-10am','10am-1pm','1pm-4pm','4pm-7pm','7pm-10pm'];
-  timeSlots=['7pm-10pm'];
+  timeSlots=['7am-10am'];
 
 
   constructor(private router: Router, public dataService: DataService){}
@@ -25,7 +25,7 @@ export class ScheduleComponent implements OnInit{
     this.datesToShow = this.getWeekDays();
     this.datesToShow.shift();
     this.dataService.selectedDate = undefined;
-    this.selectTimeSlot('7pm-10pm');    // current functionality for default selection of the only time slot
+    this.selectTimeSlot('7am-10am');    // current functionality for default selection of the only time slot
   }
 
   getWeekDays() {
