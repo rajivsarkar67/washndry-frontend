@@ -37,19 +37,19 @@ export class LoginComponent {
     this.http.post('http://localhost:5001/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
       this.dataService.authToken = res.token;
       this.dataService.userType = res.type;
-      localStorage.setItem('washndryAuthToken', this.dataService.authToken);
-      localStorage.setItem('washndryUserType', this.dataService.userType);
+      localStorage.setItem('washdryAuthToken', this.dataService.authToken);
+      localStorage.setItem('washdryUserType', this.dataService.userType);
 
-      const pendingOrder = localStorage.getItem('washndryPendingOrder');
+      const pendingOrder = localStorage.getItem('washdryPendingOrder');
       if (this.dataService.userType === 'user' && pendingOrder) {
         const payload = JSON.parse(pendingOrder);
         const headers = { 'Authorization': 'Bearer ' + this.dataService.authToken };
 
         this.http.post('http://localhost:5001/api/orders', payload, { headers }).subscribe((orderRes:any) => {
-          localStorage.removeItem('washndrySelection');
-          localStorage.removeItem('washndrySelectedDate');
-          localStorage.removeItem('washndrySelectedTimeSlot');
-          localStorage.removeItem('washndryPendingOrder');
+          localStorage.removeItem('washdrySelection');
+          localStorage.removeItem('washdrySelectedDate');
+          localStorage.removeItem('washdrySelectedTimeSlot');
+          localStorage.removeItem('washdryPendingOrder');
           this.dataService.emptyItemsList();
           this.router.navigate(['orders-list']);
         }, (error)=> {

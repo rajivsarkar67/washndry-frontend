@@ -61,8 +61,8 @@ export class ScheduleComponent implements OnInit{
       return;
     }
     else{
-      localStorage.setItem('washndrySelectedDate', this.dataService.selectedDate.toString());
-      localStorage.setItem('washndrySelectedTimeSlot', this.dataService.selectedTimeSlot);
+      localStorage.setItem('washdrySelectedDate', this.dataService.selectedDate.toString());
+      localStorage.setItem('washdrySelectedTimeSlot', this.dataService.selectedTimeSlot);
       this.router.navigate(['address']);
     }
   }

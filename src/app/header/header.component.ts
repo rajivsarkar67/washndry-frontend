@@ -11,14 +11,14 @@ import { DataService } from '../data.service';
 })
 export class HeaderComponent {
 
-  washndryIsLoggedIn: boolean = false;
+  washdryIsLoggedIn: boolean = false;
 
   constructor(private router: Router, public dataService: DataService){
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('washndryAuthToken')) {
-      this.washndryIsLoggedIn = true;
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('washdryAuthToken')) {
+      this.washdryIsLoggedIn = true;
     }
     else{
-      this.washndryIsLoggedIn = false;
+      this.washdryIsLoggedIn = false;
     }
   }
 
@@ -27,12 +27,12 @@ export class HeaderComponent {
   }
 
   logout(){
-    localStorage.removeItem('washndryAuthToken');
-    localStorage.removeItem('washndryUserType');
-    localStorage.removeItem('washndrySelection');
-    localStorage.removeItem('washndrySelectedDate');
-    localStorage.removeItem('washndrySelectedTimeSlot');
-    localStorage.removeItem('washndryPendingOrder');
+    localStorage.removeItem('washdryAuthToken');
+    localStorage.removeItem('washdryUserType');
+    localStorage.removeItem('washdrySelection');
+    localStorage.removeItem('washdrySelectedDate');
+    localStorage.removeItem('washdrySelectedTimeSlot');
+    localStorage.removeItem('washdryPendingOrder');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }

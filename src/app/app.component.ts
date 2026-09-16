@@ -20,20 +20,20 @@ export class AppComponent {
 
   ngOnInit(){
     if (typeof localStorage !== 'undefined') {
-      if(localStorage.getItem('washndryAuthToken')){
-        this.dataService.authToken = localStorage.getItem('washndryAuthToken') as string;
+      if(localStorage.getItem('washdryAuthToken')){
+        this.dataService.authToken = localStorage.getItem('washdryAuthToken') as string;
       }
-      if(localStorage.getItem('washndryUserType')){
-        this.dataService.userType = localStorage.getItem('washndryUserType') as string;
+      if(localStorage.getItem('washdryUserType')){
+        this.dataService.userType = localStorage.getItem('washdryUserType') as string;
       }
-      if(localStorage.getItem('washndrySelection')){
-        this.dataService.itemsList = JSON.parse(localStorage.getItem('washndrySelection') as string);
+      if(localStorage.getItem('washdrySelection')){
+        this.dataService.itemsList = JSON.parse(localStorage.getItem('washdrySelection') as string);
       }
-      if(localStorage.getItem('washndrySelectedDate')){
-        this.dataService.selectedDate = localStorage.getItem('washndrySelectedDate') as any;
+      if(localStorage.getItem('washdrySelectedDate')){
+        this.dataService.selectedDate = localStorage.getItem('washdrySelectedDate') as any;
       }
-      if(localStorage.getItem('washndrySelectedTimeSlot')){
-         this.dataService.selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot') as string; 
+      if(localStorage.getItem('washdrySelectedTimeSlot')){
+         this.dataService.selectedTimeSlot = localStorage.getItem('washdrySelectedTimeSlot') as string; 
       }
     }
   }

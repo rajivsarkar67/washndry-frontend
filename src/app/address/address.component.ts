@@ -17,15 +17,15 @@ export class AddressComponent {
   constructor(private router: Router, public dataService: DataService, private http: HttpClient, private validationService: ValidationService){}
 
   private getAuthHeaders() {
-    const token = this.dataService.authToken || localStorage.getItem('washndryAuthToken') || '';
+    const token = this.dataService.authToken || localStorage.getItem('washdryAuthToken') || '';
     this.dataService.authToken = token;
     return { 'Authorization': 'Bearer ' + token };
   }
 
   private buildOrderPayload(formValues: any[]) {
-    const selectedItems = JSON.parse(localStorage.getItem('washndrySelection') as string);
-    const selectedDate = localStorage.getItem('washndrySelectedDate');
-    const selectedTimeSlot = localStorage.getItem('washndrySelectedTimeSlot');
+    const selectedItems = JSON.parse(localStorage.getItem('washdrySelection') as string);
+    const selectedDate = localStorage.getItem('washdrySelectedDate');
+    const selectedTimeSlot = localStorage.getItem('washdrySelectedTimeSlot');
     const [name, fullAddress, pincode, city, state] = formValues;
     const address = {name, fullAddress, pincode, city, state};
 
@@ -52,10 +52,10 @@ export class AddressComponent {
       return;
     }
     else{
-      const token = this.dataService.authToken || localStorage.getItem('washndryAuthToken');
+      const token = this.dataService.authToken || localStorage.getItem('washdryAuthToken');
       if (!token) {
         const pendingOrder = this.buildOrderPayload(formValues);
-        localStorage.setItem('washndryPendingOrder', JSON.stringify(pendingOrder));
+        localStorage.setItem('washdryPendingOrder', JSON.stringify(pendingOrder));
         this.router.navigate(['login'], { queryParams: { returnUrl: '/address' } });
         return;
       }
@@ -64,10 +64,10 @@ export class AddressComponent {
       const payload = this.buildOrderPayload(formValues);
       const headers = this.getAuthHeaders();
       this.http.post('http://localhost:5001/api/orders', payload, {headers}).subscribe(res => {
-        localStorage.removeItem('washndrySelection');
-        localStorage.removeItem('washndrySelectedDate');
-        localStorage.removeItem('washndrySelectedTimeSlot');
-        localStorage.removeItem('washndryPendingOrder');
+        localStorage.removeItem('washdrySelection');
+        localStorage.removeItem('washdrySelectedDate');
+        localStorage.removeItem('washdrySelectedTimeSlot');
+        localStorage.removeItem('washdryPendingOrder');
         this.dataService.emptyItemsList();
         this.router.navigate(['orders-list']);
       }, (error)=>{

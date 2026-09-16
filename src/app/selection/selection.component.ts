@@ -20,7 +20,7 @@ export class SelectionComponent {
       alert('The minimum order value is 250 rupees');
       return;
     }
-    localStorage.setItem('washndrySelection', JSON.stringify(this.dataService.itemsList));
+    localStorage.setItem('washdrySelection', JSON.stringify(this.dataService.itemsList));
     this.router.navigate(['schedule']);
   }
 
