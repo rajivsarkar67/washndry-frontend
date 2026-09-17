@@ -34,7 +34,7 @@ export class LoginComponent {
       alert('Phone Number should be 10 digits starting with 6,7,8 or 9');
       return;
     }
-    this.http.post('http://localhost:5001/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
+    this.http.post('https://washndry-backend.onrender.com/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
       this.dataService.authToken = res.token;
       this.dataService.userType = res.type;
       localStorage.setItem('washdryAuthToken', this.dataService.authToken);
@@ -45,7 +45,7 @@ export class LoginComponent {
         const payload = JSON.parse(pendingOrder);
         const headers = { 'Authorization': 'Bearer ' + this.dataService.authToken };
 
-        this.http.post('http://localhost:5001/api/orders', payload, { headers }).subscribe((orderRes:any) => {
+        this.http.post('https://washndry-backend.onrender.com/api/orders', payload, { headers }).subscribe((orderRes:any) => {
           localStorage.removeItem('washdrySelection');
           localStorage.removeItem('washdrySelectedDate');
           localStorage.removeItem('washdrySelectedTimeSlot');

@@ -63,7 +63,7 @@ export class AddressComponent {
       alert("You will be sent confirmation on whatsapp if your order is accepted.");
       const payload = this.buildOrderPayload(formValues);
       const headers = this.getAuthHeaders();
-      this.http.post('http://localhost:5001/api/orders', payload, {headers}).subscribe(res => {
+      this.http.post('https://washndry-backend.onrender.com/api/orders', payload, {headers}).subscribe(res => {
         localStorage.removeItem('washdrySelection');
         localStorage.removeItem('washdrySelectedDate');
         localStorage.removeItem('washdrySelectedTimeSlot');
