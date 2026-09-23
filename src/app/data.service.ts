@@ -12,11 +12,11 @@ export class DataService {
   loaderState = signal(false);
 
   itemsList = [
-    {name: 'T-shirt', cost: 10, snapshot: 'tshirt.png', quantity: 0},
-    {name: 'Half Pant', cost: 15, snapshot: 'half_pant.png', quantity: 0},
-    {name: 'Shirt', cost: 20, snapshot: 'shirt.png', quantity: 0},
-    {name: 'Full Pant', cost: 25, snapshot: 'full_pant.png', quantity: 0},
-    {name: 'Jeans', cost: 30, snapshot: 'jeans.png', quantity: 0}
+    {name: 'T-shirt', cost: 8, snapshot: 'tshirt.png', quantity: 0},
+    {name: 'Half Pant', cost: 12, snapshot: 'half_pant.png', quantity: 0},
+    {name: 'Shirt', cost: 15, snapshot: 'shirt.png', quantity: 0},
+    {name: 'Full Pant', cost: 20, snapshot: 'full_pant.png', quantity: 0},
+    {name: 'Jeans', cost: 25, snapshot: 'jeans.png', quantity: 0}
   ];
   
   ordersList = [];
