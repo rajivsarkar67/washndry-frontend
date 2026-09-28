@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TotalAmountSectionComponent } from '../total-amount-section/total-amount-section.component';
 import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
@@ -8,6 +8,7 @@ import { DataService } from '../data.service';
     selector: 'app-selection',
     imports: [TotalAmountSectionComponent, HeaderComponent, RouterLink],
     templateUrl: './selection.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './selection.component.css'
 })
 export class SelectionComponent {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
     selector: 'app-admin-panel',
     imports: [HeaderComponent, DatePipe, FormsModule],
     templateUrl: './admin-panel.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './admin-panel.component.css'
 })
 export class AdminPanelComponent {

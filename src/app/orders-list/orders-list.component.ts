@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
     selector: 'app-orders-list',
     imports: [HeaderComponent, DatePipe],
     templateUrl: './orders-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './orders-list.component.css'
 })
 export class OrdersListComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
     selector: 'app-landing',
     imports: [HeaderComponent],
     templateUrl: './landing.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './landing.component.css'
 })
 export class LandingComponent {

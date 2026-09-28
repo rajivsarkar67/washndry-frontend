@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
     selector: 'app-total-amount-section',
     imports: [],
     templateUrl: './total-amount-section.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './total-amount-section.component.css'
 })
 export class TotalAmountSectionComponent {

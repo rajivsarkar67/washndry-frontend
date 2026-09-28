@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ValidationService } from '../validation.service';
 
@@ -7,6 +7,7 @@ import { ValidationService } from '../validation.service';
     selector: 'app-forgot-password',
     imports: [RouterLink],
     templateUrl: './forgot-password.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent {

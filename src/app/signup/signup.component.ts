@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ValidationService } from '../validation.service';
 
@@ -8,6 +8,7 @@ import { ValidationService } from '../validation.service';
     selector: 'app-signup',
     imports: [RouterLink],
     templateUrl: './signup.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './signup.component.css'
 })
 export class SignupComponent {

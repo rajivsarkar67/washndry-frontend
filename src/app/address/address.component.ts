@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
@@ -10,6 +10,7 @@ import { ValidationService } from '../validation.service';
     selector: 'app-address',
     imports: [TotalAmountSectionComponent, HeaderComponent],
     templateUrl: './address.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './address.component.css'
 })
 export class AddressComponent {

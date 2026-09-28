@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
     selector: 'app-schedule',
     imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent, DatePipe],
     templateUrl: './schedule.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './schedule.component.css'
 })
 export class ScheduleComponent implements OnInit{
