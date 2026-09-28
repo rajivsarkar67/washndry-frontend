@@ -8,7 +8,7 @@ import { ValidationService } from '../validation.service';
     selector: 'app-signup',
     imports: [RouterLink],
     templateUrl: './signup.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './signup.component.css'
 })
 export class SignupComponent {

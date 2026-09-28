@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { TotalAmountSectionComponent } from "../total-amount-section/total-amount-section.component";
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -9,12 +9,12 @@ import { DataService } from '../data.service';
     selector: 'app-schedule',
     imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent, DatePipe],
     templateUrl: './schedule.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './schedule.component.css'
 })
 export class ScheduleComponent implements OnInit{
 
-  datesToShow: any = [];
+  datesToShow = signal<any[]>([]);
   // timeSlots=['7am-10am','10am-1pm','1pm-4pm','4pm-7pm','7pm-10pm'];
   timeSlots=['7am-10am'];
 
@@ -22,9 +22,8 @@ export class ScheduleComponent implements OnInit{
   constructor(private router: Router, public dataService: DataService){}
 
   ngOnInit(){
-    this.datesToShow = this.getWeekDays();
-    this.datesToShow.shift();
-    this.dataService.selectedDate = undefined;
+    this.datesToShow.set(this.getWeekDays().slice(1));
+    this.dataService.selectedDate.set(undefined);
     this.selectTimeSlot('7am-10am');    // current functionality for default selection of the only time slot
   }
 
@@ -44,25 +43,24 @@ export class ScheduleComponent implements OnInit{
   }
 
   selectDate(date: Date){
-    this.dataService.selectedDate = date;
+    this.dataService.selectedDate.set(date);
   }
 
   selectTimeSlot(timeSlot: string){
-    this.dataService.selectedTimeSlot = timeSlot;
+    this.dataService.selectedTimeSlot.set(timeSlot);
   }
 
   navigateToNextPage(){
     console.log("navigateToNextPage called");
-    console.log(this.dataService.selectedDate);
-    console.log(new Date());
-    console.log(this.dataService.selectedDate === new Date());
-    if(this.dataService.selectedDate === undefined || this.dataService.selectedTimeSlot===''){
+    const selectedDate = this.dataService.selectedDate();
+    const selectedTimeSlot = this.dataService.selectedTimeSlot();
+    if(selectedDate === undefined || selectedTimeSlot === ''){
       alert('Please select a date and time slot first');
       return;
     }
     else{
-      localStorage.setItem('washdrySelectedDate', this.dataService.selectedDate.toString());
-      localStorage.setItem('washdrySelectedTimeSlot', this.dataService.selectedTimeSlot);
+      localStorage.setItem('washdrySelectedDate', selectedDate.toString());
+      localStorage.setItem('washdrySelectedTimeSlot', selectedTimeSlot);
       this.router.navigate(['address']);
     }
   }

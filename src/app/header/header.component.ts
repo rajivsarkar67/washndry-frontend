@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
@@ -6,21 +6,14 @@ import { DataService } from '../data.service';
     selector: 'app-header',
     imports: [],
     templateUrl: './header.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
-  washdryIsLoggedIn: boolean = false;
+  washdryIsLoggedIn = computed(() => this.dataService.authToken().length > 0);
 
-  constructor(private router: Router, public dataService: DataService){
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('washdryAuthToken')) {
-      this.washdryIsLoggedIn = true;
-    }
-    else{
-      this.washdryIsLoggedIn = false;
-    }
-  }
+  constructor(private router: Router, public dataService: DataService){}
 
   goToLogin(){
     this.router.navigate(['login']);
@@ -33,6 +26,8 @@ export class HeaderComponent {
     localStorage.removeItem('washdrySelectedDate');
     localStorage.removeItem('washdrySelectedTimeSlot');
     localStorage.removeItem('washdryPendingOrder');
+    this.dataService.authToken.set('');
+    this.dataService.userType.set('');
     this.dataService.emptyItemsList();
     this.router.navigate(['login']);
   }

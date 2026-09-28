@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
     selector: 'app-selection',
     imports: [TotalAmountSectionComponent, HeaderComponent, RouterLink],
     templateUrl: './selection.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './selection.component.css'
 })
 export class SelectionComponent {
@@ -16,21 +16,19 @@ export class SelectionComponent {
   constructor(private router: Router, public dataService: DataService){}
 
   navigateToNextPage(){
-    if(this.dataService.totalPrice < 250){
+    if(this.dataService.totalPrice() < 250){
       alert('The minimum order value is 250 rupees');
       return;
     }
-    localStorage.setItem('washdrySelection', JSON.stringify(this.dataService.itemsList));
+    localStorage.setItem('washdrySelection', JSON.stringify(this.dataService.itemsList()));
     this.router.navigate(['schedule']);
   }
 
   changeQuantity(action: string, index: number){
-    if(action === 'decrease'){
-      this.dataService.itemsList[index].quantity -= 1;
-    }
-    if(action === 'increase'){
-      this.dataService.itemsList[index].quantity += 1;
-    }
+    const change = action === 'decrease' ? -1 : action === 'increase' ? 1 : 0;
+    this.dataService.itemsList.update(items => items.map((item, itemIndex) => itemIndex === index
+      ? {...item, quantity: item.quantity + change}
+      : item));
     this.dataService.calculateTotalItemsAndPrice();
   }
 

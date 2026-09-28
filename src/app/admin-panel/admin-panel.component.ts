@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
@@ -9,14 +9,14 @@ import {FormsModule} from '@angular/forms';
     selector: 'app-admin-panel',
     imports: [HeaderComponent, DatePipe, FormsModule],
     templateUrl: './admin-panel.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './admin-panel.component.css'
 })
 export class AdminPanelComponent {
 
-  constructor(private http: HttpClient, private dataService: DataService, private changeDetectorRef: ChangeDetectorRef){}
+  constructor(private http: HttpClient, private dataService: DataService){}
 
-  ordersList: any = [];
+  ordersList = signal<any[]>([]);
   statuses = ['Ordered', 'Order Confirmed', 'Picked Up', 'Delivered'];
 
   ngOnInit(){
@@ -24,22 +24,21 @@ export class AdminPanelComponent {
   }
 
   private loadOrders(){
-    const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
+    const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken() };
     this.http.get('https://washndry-backend.onrender.com/api/all-orders', {headers}).subscribe((res:any) => {
-      this.ordersList = res.orders;
-      this.changeDetectorRef.markForCheck();
-      this.ordersList.forEach((el: any) => {
-        el.isAnythingChanged = false;
-        el.originalStatus = el.status;
-      })
+      this.ordersList.set(res.orders.map((order: any) => ({
+        ...order,
+        isAnythingChanged: false,
+        originalStatus: order.status
+      })));
     }, (error)=>{
       alert(error.error.message);
     });
   }
 
   saveOrderDetails(i: number){
-    const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    const order = this.ordersList[i];
+    const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken() };
+    const order = this.ordersList()[i];
     const dataObj: { orderId: string; status: string; pickupDate?: Date; deliveryDate?: Date } = {
       orderId: order._id,
       status: order.status
@@ -57,9 +56,15 @@ export class AdminPanelComponent {
   }
 
   cancelOrderDetails(i: number){
-    const order = this.ordersList[i];
-    order.status = order.originalStatus;
-    order.isAnythingChanged = false;
+    this.ordersList.update(orders => orders.map((order, index) => index === i
+      ? {...order, status: order.originalStatus, isAnythingChanged: false}
+      : order));
+  }
+
+  markOrderChanged(index: number){
+    this.ordersList.update(orders => orders.map((order, orderIndex) => orderIndex === index
+      ? {...order, isAnythingChanged: true}
+      : order));
   }
 
 }

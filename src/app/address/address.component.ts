@@ -10,15 +10,15 @@ import { ValidationService } from '../validation.service';
     selector: 'app-address',
     imports: [TotalAmountSectionComponent, HeaderComponent],
     templateUrl: './address.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './address.component.css'
 })
 export class AddressComponent {
   constructor(private router: Router, public dataService: DataService, private http: HttpClient, private validationService: ValidationService){}
 
   private getAuthHeaders() {
-    const token = this.dataService.authToken || localStorage.getItem('washdryAuthToken') || '';
-    this.dataService.authToken = token;
+    const token = this.dataService.authToken() || localStorage.getItem('washdryAuthToken') || '';
+    this.dataService.authToken.set(token);
     return { 'Authorization': 'Bearer ' + token };
   }
 
@@ -33,8 +33,8 @@ export class AddressComponent {
       selectedItems,
       selectedDate,
       selectedTimeSlot,
-      totalItems: this.dataService.totalItems,
-      totalAmount: this.dataService.totalPrice,
+      totalItems: this.dataService.totalItems(),
+      totalAmount: this.dataService.totalPrice(),
       address,
     };
   }
@@ -52,7 +52,7 @@ export class AddressComponent {
       return;
     }
     else{
-      const token = this.dataService.authToken || localStorage.getItem('washdryAuthToken');
+      const token = this.dataService.authToken() || localStorage.getItem('washdryAuthToken');
       if (!token) {
         const pendingOrder = this.buildOrderPayload(formValues);
         localStorage.setItem('washdryPendingOrder', JSON.stringify(pendingOrder));

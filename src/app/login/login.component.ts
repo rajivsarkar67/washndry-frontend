@@ -9,7 +9,7 @@ import { ValidationService } from '../validation.service';
     selector: 'app-login',
     imports: [RouterLink],
     templateUrl: './login.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './login.component.css'
 })
 export class LoginComponent {
@@ -35,15 +35,15 @@ export class LoginComponent {
       return;
     }
     this.http.post('https://washndry-backend.onrender.com/api/login', {phoneNumber: phoneNumber, password: password}).subscribe((res:any) => {
-      this.dataService.authToken = res.token;
-      this.dataService.userType = res.type;
-      localStorage.setItem('washdryAuthToken', this.dataService.authToken);
-      localStorage.setItem('washdryUserType', this.dataService.userType);
+      this.dataService.authToken.set(res.token);
+      this.dataService.userType.set(res.type);
+      localStorage.setItem('washdryAuthToken', this.dataService.authToken());
+      localStorage.setItem('washdryUserType', this.dataService.userType());
 
       const pendingOrder = localStorage.getItem('washdryPendingOrder');
-      if (this.dataService.userType === 'user' && pendingOrder) {
+      if (this.dataService.userType() === 'user' && pendingOrder) {
         const payload = JSON.parse(pendingOrder);
-        const headers = { 'Authorization': 'Bearer ' + this.dataService.authToken };
+        const headers = { 'Authorization': 'Bearer ' + this.dataService.authToken() };
 
         this.http.post('https://washndry-backend.onrender.com/api/orders', payload, { headers }).subscribe((orderRes:any) => {
           localStorage.removeItem('washdrySelection');
@@ -58,13 +58,13 @@ export class LoginComponent {
         return;
       }
 
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || (this.dataService.userType === 'admin' ? '/admin-panel' : '/selection');
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || (this.dataService.userType() === 'admin' ? '/admin-panel' : '/selection');
       const normalizedReturnUrl = returnUrl.startsWith('/') ? returnUrl : `/${returnUrl}`;
 
-      if(this.dataService.userType === 'user'){
+      if(this.dataService.userType() === 'user'){
         this.router.navigateByUrl(normalizedReturnUrl);
       }
-      else if(this.dataService.userType === 'admin'){
+      else if(this.dataService.userType() === 'admin'){
         this.router.navigateByUrl('/admin-panel');
       }
     }, (error)=> {

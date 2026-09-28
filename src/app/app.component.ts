@@ -1,4 +1,4 @@
-import { Component, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from './data.service';
 
@@ -6,7 +6,7 @@ import { DataService } from './data.service';
     selector: 'app-root',
     imports: [RouterOutlet],
     templateUrl: './app.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './app.component.css'
 })
 export class AppComponent {
@@ -21,19 +21,20 @@ export class AppComponent {
   ngOnInit(){
     if (typeof localStorage !== 'undefined') {
       if(localStorage.getItem('washdryAuthToken')){
-        this.dataService.authToken = localStorage.getItem('washdryAuthToken') as string;
+        this.dataService.authToken.set(localStorage.getItem('washdryAuthToken') as string);
       }
       if(localStorage.getItem('washdryUserType')){
-        this.dataService.userType = localStorage.getItem('washdryUserType') as string;
+        this.dataService.userType.set(localStorage.getItem('washdryUserType') as string);
       }
       if(localStorage.getItem('washdrySelection')){
-        this.dataService.itemsList = JSON.parse(localStorage.getItem('washdrySelection') as string);
+        this.dataService.itemsList.set(JSON.parse(localStorage.getItem('washdrySelection') as string));
+        this.dataService.calculateTotalItemsAndPrice();
       }
       if(localStorage.getItem('washdrySelectedDate')){
-        this.dataService.selectedDate = localStorage.getItem('washdrySelectedDate') as any;
+        this.dataService.selectedDate.set(new Date(localStorage.getItem('washdrySelectedDate') as string));
       }
       if(localStorage.getItem('washdrySelectedTimeSlot')){
-         this.dataService.selectedTimeSlot = localStorage.getItem('washdrySelectedTimeSlot') as string; 
+         this.dataService.selectedTimeSlot.set(localStorage.getItem('washdrySelectedTimeSlot') as string);
       }
     }
   }

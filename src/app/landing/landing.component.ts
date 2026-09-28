@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
     selector: 'app-landing',
     imports: [HeaderComponent],
     templateUrl: './landing.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './landing.component.css'
 })
 export class LandingComponent {

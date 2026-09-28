@@ -1,7 +1,7 @@
 <app-header></app-header>
 <article class="orders-list-container">
     <h2>All Orders</h2>
-    @for(order of ordersList; track order.orderId; let i = $index;){
+    @for(order of ordersList(); track order.orderId; let i = $index;){
         <div class="order-details">
             <div>
                 <p><strong>Order ID</strong></p>
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <p><strong>Status</strong></p>
-                <select [(ngModel)]="order.status" (change)="ordersList[i].isAnythingChanged = true;">
+                <select [(ngModel)]="order.status" (change)="markOrderChanged(i)">
                     @for(status of statuses; track status){
                         <option [value]="status">{{status}}</option>
                     }

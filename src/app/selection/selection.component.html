@@ -2,7 +2,7 @@
 <div class="selection-page-container">
     <a [routerLink]="['/orders-list']">Go To Orders</a>
     <div class="items-list">
-        @for(item of dataService.itemsList; track item.name){
+        @for(item of dataService.itemsList(); track item.name){
             <div class="item">
                 <div class="snapshot">
                     <img [src]="item.snapshot">
@@ -18,5 +18,5 @@
             </div>
         }
     </div>
-    <app-total-amount-section [btnLabel]="'Continue'" [btnDisabled]="dataService.totalPrice ? false: true" (emitNavigate)="navigateToNextPage()"></app-total-amount-section>
+    <app-total-amount-section [btnLabel]="'Continue'" [btnDisabled]="dataService.totalPrice() ? false: true" (emitNavigate)="navigateToNextPage()"></app-total-amount-section>
 </div>
