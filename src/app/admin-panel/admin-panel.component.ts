@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms';
 })
 export class AdminPanelComponent {
 
-  constructor(private http: HttpClient, private dataService: DataService){}
+  constructor(private http: HttpClient, private dataService: DataService, private changeDetectorRef: ChangeDetectorRef){}
 
   ordersList: any = [];
   statuses = ['Ordered', 'Order Confirmed', 'Picked Up', 'Delivered'];
@@ -26,6 +26,7 @@ export class AdminPanelComponent {
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     this.http.get('https://washndry-backend.onrender.com/api/all-orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
+      this.changeDetectorRef.markForCheck();
       this.ordersList.forEach((el: any) => {
         el.isAnythingChanged = false;
         el.originalStatus = el.status;

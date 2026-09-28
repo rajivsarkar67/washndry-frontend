@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 export class OrdersListComponent {
 
-  constructor(private router: Router, public dataService: DataService, private http: HttpClient){}
+  constructor(private router: Router, public dataService: DataService, private http: HttpClient, private changeDetectorRef: ChangeDetectorRef){}
 
   ordersList: any = [];
 
@@ -21,6 +21,7 @@ export class OrdersListComponent {
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     this.http.get('https://washndry-backend.onrender.com/api/orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
+      this.changeDetectorRef.markForCheck();
     }, (error)=>{
       alert(error.error.message);
     });

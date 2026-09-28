@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ValidationService } from '../validation.service';
 
@@ -11,7 +11,7 @@ import { ValidationService } from '../validation.service';
 })
 export class ForgotPasswordComponent {
 
-  constructor(private http: HttpClient, private validationService: ValidationService, private router: Router){}
+  constructor(private http: HttpClient, private validationService: ValidationService, private router: Router, private changeDetectorRef: ChangeDetectorRef){}
 
   isPhoneNumberChecked: boolean = false;
 
@@ -23,6 +23,7 @@ export class ForgotPasswordComponent {
     this.http.get(`https://washndry-backend.onrender.com/api/check-phone?phoneNumber=${phoneNumber}`).subscribe((res:any) => {
       if(res.exists){
         this.isPhoneNumberChecked = true;
+        this.changeDetectorRef.markForCheck();
       }
       else{
         alert('This phone number is not registered.');
