@@ -40,5 +40,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.3.0",
     "typescript": "~6.0.3"
+  },
+    "engines": {
+    "node": ">=24.15.0"
   }
 }
