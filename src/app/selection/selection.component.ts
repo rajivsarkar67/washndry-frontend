@@ -5,11 +5,10 @@ import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-selection',
-  standalone: true,
-  imports: [TotalAmountSectionComponent, HeaderComponent, RouterLink],
-  templateUrl: './selection.component.html',
-  styleUrl: './selection.component.css'
+    selector: 'app-selection',
+    imports: [TotalAmountSectionComponent, HeaderComponent, RouterLink],
+    templateUrl: './selection.component.html',
+    styleUrl: './selection.component.css'
 })
 export class SelectionComponent {
 

@@ -6,11 +6,10 @@ import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-orders-list',
-  standalone: true,
-  imports: [HeaderComponent, DatePipe],
-  templateUrl: './orders-list.component.html',
-  styleUrl: './orders-list.component.css'
+    selector: 'app-orders-list',
+    imports: [HeaderComponent, DatePipe],
+    templateUrl: './orders-list.component.html',
+    styleUrl: './orders-list.component.css'
 })
 export class OrdersListComponent {
 

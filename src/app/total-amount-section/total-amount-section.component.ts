@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-total-amount-section',
-  standalone: true,
-  imports: [],
-  templateUrl: './total-amount-section.component.html',
-  styleUrl: './total-amount-section.component.css'
+    selector: 'app-total-amount-section',
+    imports: [],
+    templateUrl: './total-amount-section.component.html',
+    styleUrl: './total-amount-section.component.css'
 })
 export class TotalAmountSectionComponent {
   @Input() btnLabel: string = '';

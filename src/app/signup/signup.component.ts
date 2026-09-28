@@ -5,11 +5,10 @@ import { ValidationService } from '../validation.service';
 
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+    selector: 'app-signup',
+    imports: [RouterLink],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   constructor(private router: Router, private http: HttpClient, private validationService: ValidationService){}

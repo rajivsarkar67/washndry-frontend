@@ -7,11 +7,10 @@ import { HttpClient } from '@angular/common/http';
 import { ValidationService } from '../validation.service';
 
 @Component({
-  selector: 'app-address',
-  standalone: true,
-  imports: [TotalAmountSectionComponent, HeaderComponent],
-  templateUrl: './address.component.html',
-  styleUrl: './address.component.css'
+    selector: 'app-address',
+    imports: [TotalAmountSectionComponent, HeaderComponent],
+    templateUrl: './address.component.html',
+    styleUrl: './address.component.css'
 })
 export class AddressComponent {
   constructor(private router: Router, public dataService: DataService, private http: HttpClient, private validationService: ValidationService){}

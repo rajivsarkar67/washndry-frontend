@@ -6,11 +6,10 @@ import { HeaderComponent } from "../header/header.component";
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-schedule',
-  standalone: true,
-  imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent, DatePipe],
-  templateUrl: './schedule.component.html',
-  styleUrl: './schedule.component.css'
+    selector: 'app-schedule',
+    imports: [TotalAmountSectionComponent, CommonModule, HeaderComponent, DatePipe],
+    templateUrl: './schedule.component.html',
+    styleUrl: './schedule.component.css'
 })
 export class ScheduleComponent implements OnInit{
 

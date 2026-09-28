@@ -44,7 +44,7 @@
                 <p>{{order.totalAmount}}</p>
             </div>
             @if(order.isAnythingChanged){
-                <button (click)="cancelOrderDetails()">Cancel</button>
+                <button (click)="cancelOrderDetails(i)">Cancel</button>
                 <button class="primary-button" (click)="saveOrderDetails(i)">Save</button>
             }
         </div>

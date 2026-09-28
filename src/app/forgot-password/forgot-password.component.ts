@@ -4,11 +4,10 @@ import { Router, RouterLink } from '@angular/router';
 import { ValidationService } from '../validation.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.css'
+    selector: 'app-forgot-password',
+    imports: [RouterLink],
+    templateUrl: './forgot-password.component.html',
+    styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent {
 

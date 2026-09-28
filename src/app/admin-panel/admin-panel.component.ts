@@ -6,11 +6,10 @@ import { DatePipe } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-admin-panel',
-  standalone: true,
-  imports: [HeaderComponent, DatePipe, FormsModule],
-  templateUrl: './admin-panel.component.html',
-  styleUrl: './admin-panel.component.css'
+    selector: 'app-admin-panel',
+    imports: [HeaderComponent, DatePipe, FormsModule],
+    templateUrl: './admin-panel.component.html',
+    styleUrl: './admin-panel.component.css'
 })
 export class AdminPanelComponent {
 
@@ -20,11 +19,16 @@ export class AdminPanelComponent {
   statuses = ['Ordered', 'Order Confirmed', 'Picked Up', 'Delivered'];
 
   ngOnInit(){
+    this.loadOrders();
+  }
+
+  private loadOrders(){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
     this.http.get('https://washndry-backend.onrender.com/api/all-orders', {headers}).subscribe((res:any) => {
       this.ordersList = res.orders;
       this.ordersList.forEach((el: any) => {
         el.isAnythingChanged = false;
+        el.originalStatus = el.status;
       })
     }, (error)=>{
       alert(error.error.message);
@@ -33,23 +37,27 @@ export class AdminPanelComponent {
 
   saveOrderDetails(i: number){
     const headers = { 'Authorization': 'Bearer '+ this.dataService.authToken };
-    let dataObj = {};
-    if(this.ordersList[i].status === 'Order Confirmed'){
-      dataObj = {orderId: this.ordersList[i]._id, status: 'Order Confirmed'};
+    const order = this.ordersList[i];
+    const dataObj: { orderId: string; status: string; pickupDate?: Date; deliveryDate?: Date } = {
+      orderId: order._id,
+      status: order.status
+    };
+    if(order.status === 'Picked Up'){
+      dataObj.pickupDate = new Date();
     }
-    if(this.ordersList[i].status === 'Picked Up'){
-      dataObj = {orderId: this.ordersList[i]._id, status: 'Picked Up', pickupDate: new Date()};
-    } 
-    if(this.ordersList[i].status === 'Delivered'){
-      dataObj = {orderId: this.ordersList[i]._id, status: 'Delivered', deliveryDate: new Date()};
+    if(order.status === 'Delivered'){
+      dataObj.deliveryDate = new Date();
     }
-    this.http.patch('https://washndry-backend.onrender.com/api/update-order', dataObj, {headers}).subscribe((res: any) => {
-      window.location.reload();
-    })
+    this.http.patch('https://washndry-backend.onrender.com/api/update-order', dataObj, {headers}).subscribe({
+      next: () => this.loadOrders(),
+      error: (error) => alert(error.error?.message || 'Unable to update order. Please try again.')
+    });
   }
 
-  cancelOrderDetails(){
-    window.location.reload();
+  cancelOrderDetails(i: number){
+    const order = this.ordersList[i];
+    order.status = order.originalStatus;
+    order.isAnythingChanged = false;
   }
 
 }
